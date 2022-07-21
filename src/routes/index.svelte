@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { t, locale } from 'svelte-intl-precompile';
 	import VirtualList from '@sveltejs/svelte-virtual-list';
 	import { Locale, Source } from '$lib/types/sources';
 	import { fade } from 'svelte/transition';
@@ -11,11 +12,10 @@
 	}
 
 	let selectedOptions = Object.values(Source);
-	let selectedLocale = Locale.Russian;
 
 	$: loadPromise = Promise.all(
 		selectedOptions.map((el) =>
-			loadData(el, selectedLocale)
+			loadData(el, $locale)
 				.then((res) => res.map((item) => ({ ...item, source: el })))
 				.catch(() => [])
 		)
@@ -28,8 +28,8 @@
 </script>
 
 <section>
-	<h1>Latest news</h1>
-	<select bind:value={selectedLocale}>
+	<h1>{$t('news')}</h1>
+	<select bind:value={$locale}>
 		{#each Object.values(Locale) as locale}
 			<option value={locale}>{locale}</option>
 		{/each}
@@ -41,7 +41,7 @@
 	</select>
 
 	{#await loadPromise}
-		loading...
+		{$t('loading')}
 	{:then data}
 		<ul>
 			<VirtualList items={data} let:item>
@@ -51,7 +51,7 @@
 			</VirtualList>
 		</ul>
 	{:catch e}
-		can't load {e}
+		{$t('failed')}
 	{/await}
 </section>
 

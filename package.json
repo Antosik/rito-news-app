@@ -39,6 +39,7 @@
 	"type": "module",
 	"dependencies": {
 		"@sveltejs/svelte-virtual-list": "^3.0.1",
-		"@tanstack/svelte-virtual": "^3.0.0-beta.13"
+		"@tanstack/svelte-virtual": "^3.0.0-beta.13",
+		"svelte-intl-precompile": "^0.11.1"
 	}
 }
