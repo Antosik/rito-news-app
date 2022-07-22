@@ -22,11 +22,12 @@
   let showSourcesSelect = false;
 
   $: loadPromise = Promise.all(
-    selectedOptions.map((el) =>
-      loadData<Record<string, any>>(el, $locale)
+    selectedOptions.map((el) => {
+      const [game, mode] = el.split('_');
+      return loadData<Record<string, any>>(game, $locale, mode)
         .then((res) => res.map<Record<string, any>>((item) => ({ ...item, source: el })))
-        .catch(() => [])
-    )
+        .catch(() => []);
+    })
   ).then((res) =>
     res
       .flat()
@@ -42,8 +43,6 @@
     showSourcesSelect = !showSourcesSelect;
     showLanguageSelect = false;
   };
-
-  $: console.log(selectedOptions);
 </script>
 
 <section>
@@ -52,17 +51,17 @@
     <div class="tools">
       <button
         class="tools__toggle"
-        class:tools__toggle--active={showLanguageSelect}
-        on:click={toggleLanguageSelect}
-      >
-        <FeatherIcon name="globe" size="18" />
-      </button>
-      <button
-        class="tools__toggle"
         class:tools__toggle--active={showSourcesSelect}
         on:click={toggleSourcesSelect}
       >
         <FeatherIcon name="filter" size="18" />
+      </button>
+      <button
+        class="tools__toggle"
+        class:tools__toggle--active={showLanguageSelect}
+        on:click={toggleLanguageSelect}
+      >
+        <FeatherIcon name="globe" size="18" />
       </button>
     </div>
 
@@ -144,7 +143,6 @@
 
   section > ul {
     min-height: 200px;
-    margin-top: grid(6);
   }
 
   li {
@@ -156,5 +154,9 @@
   p {
     margin: grid(4);
     text-align: center;
+  }
+
+  :global(svelte-virtual-list-viewport) {
+    padding-top: grid(6);
   }
 </style>

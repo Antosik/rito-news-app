@@ -27,7 +27,7 @@
   <div class="article__content">
     <header>
       <h2>
-        <SourceIcon size={28} source={item.source} />
+        <SourceIcon size={24} source={item.source} class="article__source" />
         <a href={item.url} target="_blank">{item.title}</a>
       </h2>
     </header>
@@ -45,7 +45,8 @@
         <ul class="article__tags">
           {#each tags as tag, i}
             <li>
-              {tag[0].toUpperCase() + tag.slice(1).toLowerCase()}{#if i != tags.length - 1},&nbsp;{/if}
+              {tag[0].toUpperCase() +
+                tag.slice(1).toLowerCase()}{#if i != tags.length - 1},&nbsp;{/if}
             </li>
           {/each}
         </ul>
@@ -78,7 +79,7 @@
     @include breakpoint(md) {
       flex-direction: row;
     }
-
+    
     &__media {
       position: relative;
       display: flex;
@@ -112,11 +113,10 @@
     &__content {
       display: flex;
       flex-direction: column;
+    flex: 1;
     }
 
     h2 {
-      display: flex;
-      gap: grid(2);
       margin: grid(3) grid(4);
     }
 
@@ -145,5 +145,10 @@
       list-style: none;
       display: flex;
     }
+  }
+
+  :global(.article__source) {
+      float: left;
+      margin-right: grid(1);
   }
 </style>

@@ -4,11 +4,14 @@
     "failed": "Error occured",
     "sources": {
         "lol": "League of Legends",
+        "lol_esports": "LoL Esports",
         "lor": "Legends of Runeterra",
         "tft": "Teamfight Tactics",
         "riotgames": "Riot Games",
         "val": "VALORANT",
-        "wr": "Wild Rift"
+        "val_esports": "VAL Esports",
+        "wr": "Wild Rift",
+        "wr_esports": "WR Esports"
     },
     "locales": {
         "en-us": "English (NA)",
