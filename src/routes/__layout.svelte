@@ -7,7 +7,7 @@
 
 	export async function load() {
 		init({
-			initialLocale: getLocaleFromQueryString('lang') ?? Locale.English_UnitedStates,
+			initialLocale: getLocaleFromQueryString('locale') ?? Locale.English_UnitedStates,
 			fallbackLocale: Locale.English_UnitedStates
 		});
 		await waitLocale();

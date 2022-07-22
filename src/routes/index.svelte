@@ -3,7 +3,9 @@
 	import VirtualList from '@sveltejs/svelte-virtual-list';
 	import { Locale, Source } from '$lib/types/sources';
 	import { fade } from 'svelte/transition';
-	import Article from '$lib/components/article.svelte';
+	import Article from '$lib/components/Article.svelte';
+	import SourceSelect from '$lib/components/SourceSelect.svelte';
+	import LanguageSelect from '$lib/components/LanguageSelect.svelte';
 
 	function loadData<T>(game: string, locale: string, mode = 'news'): Promise<T[]> {
 		return fetch(`https://rito-news.iamantosik.me/${game}/${locale}/${mode}.json`).then((res) =>
@@ -12,6 +14,8 @@
 	}
 
 	let selectedOptions = Object.values(Source);
+
+	$: localeLocale = $locale as Locale
 
 	$: loadPromise = Promise.all(
 		selectedOptions.map((el) =>
@@ -29,16 +33,8 @@
 
 <section>
 	<h1>{$t('news')}</h1>
-	<select bind:value={$locale}>
-		{#each Object.values(Locale) as locale}
-			<option value={locale}>{locale}</option>
-		{/each}
-	</select>
-	<select bind:value={selectedOptions} multiple>
-		{#each Object.values(Source) as source}
-			<option value={source}>{source}</option>
-		{/each}
-	</select>
+	<LanguageSelect bind:selected={localeLocale} />
+	<SourceSelect bind:selected={selectedOptions} />
 
 	{#await loadPromise}
 		{$t('loading')}

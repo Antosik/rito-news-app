@@ -8,8 +8,8 @@ export enum Source {
 }
 
 export enum Locale {
-    English_UnitedStates = 'en-us',
-    English_UnitedKingdom = 'en-gb',
+    English_UnitedStates = "en-us",
+    English_UnitedKingdom = "en-gb",
     German = "de-de",
     Spanish_Spain = "es-es",
     Spanish_Mexico = "es-mx",
@@ -31,7 +31,7 @@ export enum Locale {
     Hungarian = "hu-hu",
     Czech_CzechRepublic = "cs-cz",
     English_Australia = "en-au",
-    Spanish_Argentina = "es-ar",
+    // Spanish_Argentina = "es-ar",
     Vietnamese_Vietnam = "vi-vn",
     Indonesian = "id-id",
     Arabic_UnitedArabEmirates = "ar-ae",

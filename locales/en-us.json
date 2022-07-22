@@ -1,5 +1,43 @@
 {
     "news": "Latest news",
     "loading": "Loading...",
-    "failed": "Error occured"
+    "failed": "Error occured",
+    "sources": {
+        "lol": "League of Legends",
+        "lor": "Legends of Runeterra",
+        "tft": "Teamfight Tactics",
+        "riotgames": "Riot Games",
+        "val": "VALORANT",
+        "wr": "Wild Rift"
+    },
+    "locales": {
+        "en-us": "English (NA)",
+        "en-gb": "English (EUW)",
+        "de-de": "Deutsch",
+        "es-es": "Español (EUW)",
+        "es-mx": "Español (LATAM)",
+        "fr-fr": "Français",
+        "it-it": "Italiano",
+        "pl-pl": "Polski",
+        "pt-br": "Português",
+        "ru-ru": "Русский",
+        "tr-tr": "Türkçe",
+        "ja-jp": "日本語",
+        "ko-kr": "한국어",
+        "zh-tw": "繁體中文",
+        "th-th": "ภาษาไทย",
+        "en-ph": "English (PH)",
+        "en-sg": "English (SG)",
+        "en-pl": "English (EUNE)",
+        "el-gr": "Ελληνικά",
+        "ro-ro": "Română",
+        "hu-hu": "Magyar",
+        "cs-cz": "Čeština",
+        "en-au": "English (OCE)",
+        "vi-vn": "Tiếng việt",
+        "id-id": "Indonesian",
+        "ar-ae": "العربية",
+        "ms-my": "Malaysian",
+        "zh-my": "马来简体中文"
+    }
 }

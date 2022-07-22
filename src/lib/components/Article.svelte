@@ -1,19 +1,5 @@
 <script lang="ts">
-	import lolLogo from '$lib/icons/lol.svg';
-	import lorLogo from '$lib/icons/lor.svg';
-	import riotgamesLogo from '$lib/icons/riotgames.svg';
-	import tftLogo from '$lib/icons/tft.svg';
-	import valLogo from '$lib/icons/val.svg';
-	import wrLogo from '$lib/icons/wr.svg';
-
-	const sourcesIcons = {
-		lol: lolLogo,
-		lor: lorLogo,
-		riotgames: riotgamesLogo,
-		tft: tftLogo,
-		val: valLogo,
-        wr: wrLogo
-	};
+	import SourceIcon from './SourceIcon.svelte';
 
 	export let item: any;
 </script>
@@ -28,7 +14,7 @@
 	<div class="article__content">
 		<header>
 			<h2>
-				<img src={sourcesIcons[item.source]} alt="" class="article__source-logo" />
+				<SourceIcon size={28} source={item.source} />
 				<a href={item.url} target="_blank">{item.title}</a>
 			</h2>
 		</header>
