@@ -13,7 +13,15 @@
   const options = Object.values(Locale);
 </script>
 
-<MultiSelect maxSelect={1} selected={selected ? [selected] : []} on:change={onChange} {options}>
+<MultiSelect
+  maxSelect={1}
+  selected={selected ? [selected] : []}
+  noOptionsMsg={$t('multiselect.noOptionsMsg')}
+  disabledTitle={$t('multiselect.disabledTitle')}
+  defaultDisabledTitle={$t('multiselect.defaultDisabledTitle')}
+  on:change={onChange}
+  {options}
+>
   <span let:option slot="option">
     {$t(`locales.${option}`)}
   </span>

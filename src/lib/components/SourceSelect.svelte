@@ -17,7 +17,13 @@
   };
 </script>
 
-<MultiSelect bind:selected {options}>
+<MultiSelect
+  bind:selected
+  {options}
+  noOptionsMsg={$t('multiselect.noOptionsMsg')}
+  disabledTitle={$t('multiselect.disabledTitle')}
+  defaultDisabledTitle={$t('multiselect.defaultDisabledTitle')}
+>
   <span let:option slot="option">
     <SourceIcon source={typeConverter(option)} size={18} />
     {$t(`sources.${option}`)}

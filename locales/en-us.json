@@ -42,5 +42,10 @@
         "ar-ae": "العربية",
         "ms-my": "Malaysian",
         "zh-my": "马来简体中文"
+    },
+    "multiselect": {
+        "noOptionsMsg": "No matching options",
+        "disabledTitle": "This field is disabled",
+        "defaultDisabledTitle": "This option is disabled"
     }
 }
