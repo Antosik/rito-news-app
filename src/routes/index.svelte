@@ -30,12 +30,14 @@
 </script>
 
 <section>
-  <h1>{$t('news')}</h1>
-  <LanguageSelect bind:selected={$locale} />
-  <SourceSelect bind:selected={selectedOptions} />
+  <header>
+    <h1>{$t('news')}</h1>
+    <LanguageSelect bind:selected={$locale} />
+    <SourceSelect bind:selected={selectedOptions} />
+  </header>
 
   {#await loadPromise}
-    {$t('loading')}
+    <p>{$t('loading')}</p>
   {:then data}
     <ul>
       <VirtualList items={data} let:item>
@@ -45,24 +47,29 @@
       </VirtualList>
     </ul>
   {:catch}
-    {$t('failed')}
+    <p>{$t('failed')}</p>
   {/await}
 </section>
 
-<style>
-  section {
-    padding: 40px;
+<style lang="scss">
+  header {
+    padding: grid(8);
+    padding-bottom: grid(4);
   }
 
   section > ul {
     min-height: 200px;
     height: calc(100vh - 15em);
     list-style: none;
-    margin: 20px 0;
   }
 
   li {
     display: flex;
-    margin-bottom: 12px;
+    margin-bottom: grid(3);
+    padding: 0 grid(8);
+  }
+
+  p {
+    text-align: center;
   }
 </style>

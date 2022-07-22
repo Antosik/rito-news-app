@@ -28,10 +28,10 @@
   </span>
 </MultiSelect>
 
-<style>
+<style lang="scss">
   span {
     display: flex;
     align-items: center;
-    gap: 4px;
+    gap: grid(1);
   }
 </style>

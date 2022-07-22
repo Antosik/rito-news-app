@@ -1,0 +1,27 @@
+@use 'sass:map';
+
+$breakpoints: (
+  xs: 375px,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1920px,
+  xxxl: 2560px,
+);
+
+@mixin breakpoint($point) {
+  @media (min-width: map.get($breakpoints, $point)) {
+    @content;
+  }
+}
+
+@function grid($multiplier) {
+  @return $grid-module * $multiplier;
+}
+
+@mixin flex_center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

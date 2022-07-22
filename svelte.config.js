@@ -9,6 +9,9 @@ const config = {
 	preprocess: preprocess({
 		postcss: {
 			plugins: [autoprefixer()]
+		},
+		scss: {
+			prependData: `@import 'src/scss/components.scss';`
 		}
 	}),
 

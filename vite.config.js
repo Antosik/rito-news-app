@@ -6,6 +6,9 @@ import precompileIntl from "svelte-intl-precompile/sveltekit-plugin";
 const config = {
 	plugins: [isoImport(), sveltekit(), precompileIntl('locales')],
 	legacy: { buildSsrCjsExternalHeuristics: true },
+	server: {
+		fs: true
+	}
 };
 
 export default config;

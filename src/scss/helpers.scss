@@ -1,0 +1,50 @@
+@import "./mixins.scss";
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body,
+#svelte {
+  height: 100%;
+}
+
+html {
+  font-size: 14px;
+}
+
+a {
+  text-decoration: none;
+  color: currentColor;
+}
+
+ul {
+  list-style: none;
+}
+
+label,
+button,
+input,
+select {
+  cursor: pointer;
+  font-size: inherit;
+  font-family: inherit;
+}
+
+img {
+  font-style: italic;
+}
+
+.visually-hidden {
+  clip: rect(1px, 1px, 1px, 1px);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
