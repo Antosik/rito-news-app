@@ -7,20 +7,26 @@
 		"package": "svelte-kit package",
 		"preview": "vite preview",
 		"prepare": "svelte-kit sync",
-		"check": "svelte-check --tsconfig ./tsconfig.json",
-		"check:watch": "svelte-check --tsconfig ./tsconfig.json --watch",
-		"lint": "prettier --check --plugin-search-dir=. . && eslint .",
-		"format": "prettier --write --plugin-search-dir=. ."
+		"lint": "npm run lint:svelte && npm run lint:ts && npm run lint:eslint",
+		"lint:svelte": "svelte-check --tsconfig ./tsconfig.json",
+		"lint:svelte:watch": "svelte-check --tsconfig ./tsconfig.json --watch",
+		"lint:ts": "tsc --noemit",
+		"lint:eslint": "eslint \"src/**/*.{svelte,ts}\" --fix",
+		"format": "prettier --write \"src/**/*.{svelte,ts,css,html}\""
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "next",
 		"@sveltejs/kit": "next",
 		"@types/leaflet": "^1.7.11",
+		"@types/svelte-leafletjs": "^0.8.2",
 		"@typescript-eslint/eslint-plugin": "^5.27.0",
 		"@typescript-eslint/parser": "^5.27.0",
 		"autoprefixer": "^10.4.7",
-		"eslint": "^8.16.0",
-		"eslint-config-prettier": "^8.3.0",
+		"eslint": "^8.15.0",
+		"eslint-config-prettier": "^8.5.0",
+		"eslint-import-resolver-typescript": "^3.3.0",
+		"eslint-plugin-import": "^2.26.0",
+		"eslint-plugin-prettier": "^4.0.0",
 		"eslint-plugin-svelte3": "^4.0.0",
 		"leaflet": "^1.8.0",
 		"postcss": "^8.4.14",
@@ -39,8 +45,6 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"@sveltejs/svelte-virtual-list": "^3.0.1",
-		"@tanstack/svelte-virtual": "^3.0.0-beta.13",
 		"svelte-intl-precompile": "^0.11.1"
 	}
 }

@@ -1,18 +1,18 @@
 <script context="module" lang="ts">
-	import { getLocaleFromQueryString, init, waitLocale } from 'svelte-intl-precompile';
-	import { registerAll } from '$locales';
-	import { Locale } from '$lib/types/sources';
+  import { getLocaleFromQueryString, init, waitLocale } from 'svelte-intl-precompile';
+  import { registerAll } from '$locales';
+  import { Locale } from '$lib/types/sources';
 
-	registerAll();
+  registerAll();
 
-	export async function load() {
-		init({
-			initialLocale: getLocaleFromQueryString('locale') ?? Locale.English_UnitedStates,
-			fallbackLocale: Locale.English_UnitedStates
-		});
-		await waitLocale();
-		return {};
-	}
+  export async function load() {
+    init({
+      initialLocale: getLocaleFromQueryString('locale') ?? Locale.English_UnitedStates,
+      fallbackLocale: Locale.English_UnitedStates
+    });
+    await waitLocale();
+    return {};
+  }
 </script>
 
 <slot />
