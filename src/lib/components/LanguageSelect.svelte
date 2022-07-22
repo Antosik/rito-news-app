@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Locale } from '$lib/types/sources';
+  import { Locale } from '$lib/types/locale';
   import { t } from 'svelte-intl-precompile';
 
   import MultiSelect from 'svelte-multiselect';

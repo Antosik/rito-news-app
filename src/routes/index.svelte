@@ -8,12 +8,7 @@
   import SourceSelect from '$lib/components/SourceSelect.svelte';
   import LanguageSelect from '$lib/components/LanguageSelect.svelte';
   import FeatherIcon from '$lib/components/FeatherIcon.svelte';
-
-  async function loadData<T>(game: string, locale: string, mode = 'news'): Promise<T[]> {
-    return fetch(`https://rito-news.iamantosik.me/${game}/${locale}/${mode}.json`).then((res) =>
-      res.json()
-    );
-  }
+  import { loadDataBySource } from '$lib/api/news';
 
   let selectedOptions = Object.values(Source);
 
@@ -23,8 +18,7 @@
 
   $: loadPromise = Promise.all(
     selectedOptions.map((el) => {
-      const [game, mode] = el.split('_');
-      return loadData<Record<string, any>>(game, $locale, mode)
+      return loadDataBySource(el, $locale)
         .then((res) => res.map<Record<string, any>>((item) => ({ ...item, source: el })))
         .catch(() => []);
     })

@@ -1,7 +1,7 @@
 <script context="module" lang="ts">
   import { getLocaleFromQueryString, init, waitLocale } from 'svelte-intl-precompile';
   import { registerAll } from '$locales';
-  import { Locale } from '$lib/types/sources';
+  import { Locale } from '$lib/types/locale';
 
   registerAll();
 
