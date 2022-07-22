@@ -15,7 +15,7 @@
 		"format": "prettier --write \"src/**/*.{svelte,ts,css,html}\""
 	},
 	"devDependencies": {
-		"@sveltejs/adapter-auto": "next",
+		"@sveltejs/adapter-cloudflare": "^1.0.0-next.30",
 		"@sveltejs/kit": "next",
 		"@types/feather-icons": "^4.7.0",
 		"@types/leaflet": "^1.7.11",
