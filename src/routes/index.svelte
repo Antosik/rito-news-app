@@ -1,24 +1,33 @@
 <script lang="ts">
-  import { t, locale } from 'svelte-intl-precompile';
-  import VirtualList from '$lib/components/VirtualList.svelte';
-  import { Source } from '$lib/types/sources';
   import { quadIn, quadOut } from 'svelte/easing';
   import { fade, fly, type FlyParams } from 'svelte/transition';
-  import Article from '$lib/components/Article.svelte';
-  import SourceSelect from '$lib/components/SourceSelect.svelte';
-  import LanguageSelect from '$lib/components/LanguageSelect.svelte';
-  import FeatherIcon from '$lib/components/FeatherIcon.svelte';
-  import { loadDataBySource } from '$lib/api/news';
-  import type { NewsItem } from '$lib/types/news';
+  import { t, locale } from 'svelte-intl-precompile';
 
-  let selectedOptions = Object.values(Source);
+  import { browser } from '$app/env';
+  import { goto } from '$app/navigation';
+  import { page } from '$app/stores';
+
+  import { loadDataBySource } from '$lib/api/news';
+  import Article from '$lib/components/Article.svelte';
+  import FeatherIcon from '$lib/components/FeatherIcon.svelte';
+  import LanguageSelect from '$lib/components/LanguageSelect.svelte';
+  import SourceSelect from '$lib/components/SourceSelect.svelte';
+  import VirtualList from '$lib/components/VirtualList.svelte';
+  import type { NewsItem } from '$lib/types/news';
+  import { selectedSources } from '$lib/stores/sources';
 
   const toggleAnimation: FlyParams = { y: -48, opacity: 0, duration: 200 };
   let showLanguageSelect = false;
   let showSourcesSelect = false;
 
+  $: if (browser) {
+    const url = new URL($page.url);
+    url.searchParams.set('locale', $locale);
+    goto(url, { replaceState: true });
+  }
+
   $: loadPromise = Promise.all(
-    selectedOptions.map((el) => {
+    $selectedSources.map((el) => {
       return loadDataBySource<NewsItem>(el, $locale)
         .then((res) => res.map((item) => ({ ...item, source: el })))
         .catch(() => []);
@@ -75,7 +84,7 @@
         in:fly={{ ...toggleAnimation, easing: quadIn }}
         out:fly={{ ...toggleAnimation, easing: quadOut }}
       >
-        <SourceSelect bind:selected={selectedOptions} />
+        <SourceSelect bind:selected={$selectedSources} />
       </div>
     {/if}
   </header>
