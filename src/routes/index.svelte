@@ -9,6 +9,7 @@
   import LanguageSelect from '$lib/components/LanguageSelect.svelte';
   import FeatherIcon from '$lib/components/FeatherIcon.svelte';
   import { loadDataBySource } from '$lib/api/news';
+  import type { NewsItem } from '$lib/types/news';
 
   let selectedOptions = Object.values(Source);
 
@@ -18,14 +19,14 @@
 
   $: loadPromise = Promise.all(
     selectedOptions.map((el) => {
-      return loadDataBySource(el, $locale)
-        .then((res) => res.map<Record<string, any>>((item) => ({ ...item, source: el })))
+      return loadDataBySource<NewsItem>(el, $locale)
+        .then((res) => res.map((item) => ({ ...item, source: el })))
         .catch(() => []);
     })
   ).then((res) =>
     res
-      .flat()
-      .map<Record<string, any>>((el) => ({ ...el, date: new Date(el.date) }))
+      .flat(1)
+      .map((el) => ({ ...el, date: new Date(el.date) }))
       .sort((a, b) => b.date.getTime() - a.date.getTime())
   );
 

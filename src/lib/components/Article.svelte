@@ -1,11 +1,17 @@
 <script lang="ts">
+  import type { NewsItem } from '$lib/types/news';
+
   import { locale } from 'svelte-intl-precompile';
 
   import SourceIcon from './SourceIcon.svelte';
 
-  export let item: any;
+  export let item: NewsItem;
 
-  $: tags = [...(item.categories ?? []), ...(item.tags ?? [])];
+  $: tags = [
+    ...(item.categories ?? []),
+    ...(item.tags ?? []),
+    ...(item.category ? [item.category] : [])
+  ];
 
   const dateFormat: Intl.DateTimeFormatOptions = {
     year: 'numeric',
@@ -27,7 +33,9 @@
   <div class="article__content">
     <header>
       <h2>
-        <SourceIcon size={24} source={item.source} class="article__source" />
+        {#if item.source}
+          <SourceIcon size={24} source={item.source} class="article__source" />
+        {/if}
         <a href={item.url} target="_blank">{item.title}</a>
       </h2>
     </header>
@@ -79,7 +87,7 @@
     @include breakpoint(md) {
       flex-direction: row;
     }
-    
+
     &__media {
       position: relative;
       display: flex;
@@ -113,7 +121,7 @@
     &__content {
       display: flex;
       flex-direction: column;
-    flex: 1;
+      flex: 1;
     }
 
     h2 {
@@ -148,7 +156,7 @@
   }
 
   :global(.article__source) {
-      float: left;
-      margin-right: grid(1);
+    float: left;
+    margin-right: grid(1);
   }
 </style>
