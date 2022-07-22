@@ -83,6 +83,7 @@
     border-radius: 12px;
     border: 1px solid #ccc;
     overflow: hidden;
+    position: relative;
 
     @include breakpoint(md) {
       flex-direction: row;
@@ -130,6 +131,15 @@
 
     a {
       color: black;
+
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+      }
     }
 
     p {
