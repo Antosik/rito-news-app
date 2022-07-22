@@ -17,6 +17,7 @@
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "next",
 		"@sveltejs/kit": "next",
+		"@types/feather-icons": "^4.7.0",
 		"@types/leaflet": "^1.7.11",
 		"@types/svelte-leafletjs": "^0.8.2",
 		"@typescript-eslint/eslint-plugin": "^5.27.0",
@@ -46,6 +47,7 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"feather-icons": "^4.29.0",
 		"svelte-intl-precompile": "^0.11.1"
 	}
 }

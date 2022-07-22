@@ -42,12 +42,10 @@
       </time>
 
       {#if tags.length > 0}
-        |
         <ul class="article__tags">
           {#each tags as tag, i}
             <li>
-              {tag[0].toUpperCase() + tag.slice(1).toLowerCase()}{#if i != tags.length - 1},
-              {/if}
+              {tag[0].toUpperCase() + tag.slice(1).toLowerCase()}{#if i != tags.length - 1},&nbsp;{/if}
             </li>
           {/each}
         </ul>
@@ -131,10 +129,16 @@
     }
 
     &__footer {
+      display: flex;
+      flex-direction: column;
       margin: auto grid(4) grid(3);
       color: #6c6c6c;
-      display: flex;
       gap: grid(1);
+
+      @include breakpoint(md) {
+        flex-direction: row;
+        justify-content: space-between;
+      }
     }
 
     &__tags {
