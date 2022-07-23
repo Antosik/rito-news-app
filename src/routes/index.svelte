@@ -27,7 +27,7 @@
   }
 
   $: loadPromise = Promise.all(
-    $selectedSources.map((el) => {
+    $selectedSources.map(async (el) => {
       return loadDataBySource<NewsItem>(el, $locale)
         .then((res) => res.map((item) => ({ ...item, source: el })))
         .catch(() => []);

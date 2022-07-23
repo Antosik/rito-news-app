@@ -12,8 +12,7 @@
   import wrLogo from '$lib/icons/wr.svg';
   import wrEsportsLogo from '$lib/icons/wr_esports.svg';
 
-  let className: string;
-  export { className as class };
+  export let className: string | undefined = undefined;
   export let source: Source;
   export let size: number = 24;
 
@@ -30,4 +29,10 @@
   };
 </script>
 
-<img src={sourcesIcons[source]} class={className} alt={$t(`sources.${source}`)} width={size} height={size} />
+<img
+  src={sourcesIcons[source]}
+  class={className}
+  alt={$t(`sources.${source}`)}
+  width={size}
+  height={size}
+/>

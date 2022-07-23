@@ -34,7 +34,7 @@
     <header>
       <h2>
         {#if item.source}
-          <SourceIcon size={24} source={item.source} class="article__source" />
+          <SourceIcon size={24} source={item.source} className="article__source" />
         {/if}
         <a href={item.url} target="_blank">{item.title}</a>
       </h2>
