@@ -167,7 +167,7 @@
   }
 
   section > ul {
-    min-height: 200px;
+    height: calc(100% - 100px);
   }
 
   .tools {
