@@ -129,7 +129,7 @@
     }
 
     a {
-      color: black;
+      color: $color-black;
 
       &::before {
         content: '';

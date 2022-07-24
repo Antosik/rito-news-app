@@ -129,7 +129,7 @@
       padding: grid(1);
 
       &--active {
-        color: red;
+        color: $color-riotgames;
       }
     }
   }

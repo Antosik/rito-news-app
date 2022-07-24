@@ -91,7 +91,7 @@
   }
 
   :global(.riotgames-icon.selected) {
-    color: #d32f2f;
+    color: $color-riotgames;
   }
 
   .popup {
@@ -105,8 +105,8 @@
 
       .control {
         padding: grid(1) grid(2);
-        background: #d32f2f;
-        color: #fff;
+        background: $color-riotgames;
+        color: $color-white;
         text-align: center;
       }
 
