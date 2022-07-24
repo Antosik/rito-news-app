@@ -1,9 +1,8 @@
 <script lang="ts">
-  import type { NewsItem } from '$lib/types/news';
-
   import { locale } from 'svelte-intl-precompile';
 
-  import SourceIcon from './SourceIcon.svelte';
+  import SourceIcon from '$lib/components/SourceIcon.svelte';
+  import type { NewsItem } from '$lib/types/news';
 
   export let item: NewsItem;
 

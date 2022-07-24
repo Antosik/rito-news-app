@@ -10,13 +10,13 @@
   import { loadData } from '$lib/api/news';
   import FeatherIcon from '$lib/components/FeatherIcon.svelte';
   import Header from '$lib/components/Header.svelte';
-  import LanguageSelect from '$lib/components/LanguageSelect.svelte';
-  import OfficesMap from '$lib/components/OfficesMap.svelte';
-  import type { JobsItem } from '$lib/types/jobs';
-  import OfficesSelect from '$lib/components/OfficesSelect.svelte';
   import Job from '$lib/components/Job.svelte';
-  import VirtualList from '$lib/components/VirtualList.svelte';
+  import LanguageSelect from '$lib/components/LanguageSelect.svelte';
   import MultiSelectString from '$lib/components/MultiSelectString.svelte';
+  import OfficesMap from '$lib/components/OfficesMap.svelte';
+  import OfficesSelect from '$lib/components/OfficesSelect.svelte';
+  import VirtualList from '$lib/components/VirtualList.svelte';
+  import type { JobsItem } from '$lib/types/jobs';
 
   $: loadPromise = loadData<JobsItem>('riotgames', $locale, 'jobs').then((res) => {
     availableProducts = Array.from(new Set(res.map((el) => el.products)));

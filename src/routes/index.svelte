@@ -14,8 +14,8 @@
   import LanguageSelect from '$lib/components/LanguageSelect.svelte';
   import SourceSelect from '$lib/components/SourceSelect.svelte';
   import VirtualList from '$lib/components/VirtualList.svelte';
-  import type { NewsItem } from '$lib/types/news';
   import { selectedSources } from '$lib/stores/sources';
+  import type { NewsItem } from '$lib/types/news';
   import { Source } from '$lib/types/sources';
 
   const toggleAnimation: FlyParams = { y: -48, opacity: 0, duration: 200 };

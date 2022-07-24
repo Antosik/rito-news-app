@@ -1,6 +1,5 @@
 <script lang="ts">
   import { locale, t } from 'svelte-intl-precompile';
-
   import MultiSelect, { type Option } from 'svelte-multiselect';
 
   export let selected: string[] = [];

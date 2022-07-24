@@ -1,8 +1,8 @@
 <script lang="ts">
-  import { Locale } from '$lib/types/locale';
   import { t } from 'svelte-intl-precompile';
-
   import MultiSelect from 'svelte-multiselect';
+
+  import { Locale } from '$lib/types/locale';
 
   export let selected: string;
 

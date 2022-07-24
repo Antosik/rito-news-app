@@ -1,9 +1,9 @@
 <script lang="ts">
-  import { Source } from '$lib/types/sources';
   import { t } from 'svelte-intl-precompile';
-
   import MultiSelect, { type Option } from 'svelte-multiselect';
-  import SourceIcon from './SourceIcon.svelte';
+
+  import SourceIcon from '$lib/components/SourceIcon.svelte';
+  import { Source } from '$lib/types/sources';
 
   export let selected: Source[] = [];
 

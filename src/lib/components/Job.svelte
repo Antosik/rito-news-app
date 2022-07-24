@@ -64,10 +64,6 @@
       }
     }
 
-    p {
-      margin: 0 grid(4) grid(3) grid(4);
-    }
-
     &__footer {
       display: flex;
       flex-direction: column;
