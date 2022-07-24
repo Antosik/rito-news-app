@@ -5,7 +5,7 @@
   import MultiSelect, { type Option } from 'svelte-multiselect';
   import SourceIcon from './SourceIcon.svelte';
 
-  export let selected: Source[];
+  export let selected: Source[] = [];
 
   const options = Object.values(Source);
 

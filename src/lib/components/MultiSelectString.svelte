@@ -3,8 +3,8 @@
 
   import MultiSelect, { type Option } from 'svelte-multiselect';
 
-  export let selected: string[];
-  export let options: string[];
+  export let selected: string[] = [];
+  export let options: string[] = [];
 
   const sortSelected = (a: Option, b: Option) => {
     return (a as string).localeCompare((b as string, $locale));

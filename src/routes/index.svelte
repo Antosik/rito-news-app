@@ -16,6 +16,7 @@
   import VirtualList from '$lib/components/VirtualList.svelte';
   import type { NewsItem } from '$lib/types/news';
   import { selectedSources } from '$lib/stores/sources';
+  import { Source } from '$lib/types/sources';
 
   const toggleAnimation: FlyParams = { y: -48, opacity: 0, duration: 200 };
   let showLanguageSelect = false;
@@ -27,8 +28,9 @@
     goto(url, { replaceState: true });
   }
 
+  $: sourcesToLoad = $selectedSources?.length ? $selectedSources : Object.values(Source);
   $: loadPromise = Promise.all(
-    $selectedSources.map(async (el) => {
+    sourcesToLoad.map(async (el) => {
       return loadDataBySource<NewsItem>(el, $locale)
         .then((res) => res.map((item) => ({ ...item, source: el })))
         .catch(() => []);

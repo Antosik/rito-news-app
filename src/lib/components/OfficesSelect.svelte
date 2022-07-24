@@ -4,7 +4,7 @@
   import MultiSelect, { type ObjectOption } from 'svelte-multiselect';
   import offices from '$lib/api/offices.json';
 
-  export let selected: number[];
+  export let selected: number[] = [];
 
   const options: ObjectOption[] = offices.map((el) => ({ value: el.id, label: el.name }));
 
