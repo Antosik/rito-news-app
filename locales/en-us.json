@@ -1,7 +1,10 @@
 {
     "news": "Latest news",
+    "jobs": "Jobs",
     "loading": "Loading...",
     "failed": "Error occured",
+    "craft": "Craft",
+    "product": "Product",
     "sources": {
         "lol": "League of Legends",
         "lol_esports": "LoL Esports",

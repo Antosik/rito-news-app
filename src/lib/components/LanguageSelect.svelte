@@ -7,7 +7,7 @@
   export let selected: string;
 
   const onChange = (e: CustomEvent) => {
-    selected = e.detail.type === 'remove' ? undefined : e.detail.option;
+    selected = e.detail.type === 'add' ? e.detail.option : undefined;
   };
 
   const options = Object.values(Locale);

@@ -10,6 +10,7 @@
   import { loadDataBySource } from '$lib/api/news';
   import Article from '$lib/components/Article.svelte';
   import FeatherIcon from '$lib/components/FeatherIcon.svelte';
+  import Header from '$lib/components/Header.svelte';
   import LanguageSelect from '$lib/components/LanguageSelect.svelte';
   import SourceSelect from '$lib/components/SourceSelect.svelte';
   import VirtualList from '$lib/components/VirtualList.svelte';
@@ -50,10 +51,11 @@
 </script>
 
 <section>
-  <header>
-    <h1>{$t('news')}</h1>
+  <Header>
+    <h1 slot="title">{$t('news')}</h1>
     <div class="tools">
       <button
+        type="button"
         class="tools__toggle"
         class:tools__toggle--active={showSourcesSelect}
         on:click={toggleSourcesSelect}
@@ -61,6 +63,7 @@
         <FeatherIcon name="filter" size="18" />
       </button>
       <button
+        type="button"
         class="tools__toggle"
         class:tools__toggle--active={showLanguageSelect}
         on:click={toggleLanguageSelect}
@@ -87,7 +90,7 @@
         <SourceSelect bind:selected={$selectedSources} />
       </div>
     {/if}
-  </header>
+  </Header>
 
   {#await loadPromise}
     <p>{$t('loading')}</p>
@@ -109,17 +112,6 @@
     display: flex;
     flex-direction: column;
     height: 100%;
-  }
-
-  header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    padding: grid(8);
-    box-shadow: 1px 2px 2px hsla(216, 15%, 87%, 0.333), 2px 4px 4px hsl(216, 15%, 87%, 0.333),
-      3px 6px 6px hsl(216, 15%, 87%, 0.333);
-    z-index: 3;
   }
 
   .tools {
@@ -162,5 +154,6 @@
 
   :global(svelte-virtual-list-viewport) {
     padding-top: grid(6);
+    padding-bottom: grid(3);
   }
 </style>

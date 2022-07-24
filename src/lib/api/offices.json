@@ -1,0 +1,128 @@
+[
+    {
+        "id": 27041,
+        "name": "Barcelona, Spain",
+        "lat": 41.392696,
+        "lan": 2.144449
+    },
+    {
+        "id": 1967,
+        "name": "Berlin, Germany",
+        "lat": 52.518621,
+        "lan": 13.375142
+    },
+    {
+        "id": 48311,
+        "name": "Dubai, UAE",
+        "lat": 25.197172,
+        "lan": 55.274274
+    },
+    {
+        "id": 1246,
+        "name": "Dublin, Ireland",
+        "lat": 53.340258,
+        "lan": -6.252831
+    },
+    {
+        "id": 1423,
+        "name": "Hong Kong, China",
+        "lat": 22.280162,
+        "lan": 114.165335
+    },
+    {
+        "id": 1424,
+        "name": "Istanbul, Turkey",
+        "lat": 41.011218,
+        "lan": 28.978178
+    },
+    {
+        "id": 884,
+        "name": "Los Angeles, USA",
+        "lat": 34.055863,
+        "lan": -118.246139
+    },
+    {
+        "id": 2255,
+        "name": "Mexico City, Mexico",
+        "lat": 19.432605,
+        "lan": -99.133296
+    },
+    {
+        "id": 1425,
+        "name": "Moscow, Russia",
+        "lat": 55.755819,
+        "lan": 37.617644
+    },
+    {
+        "id": 22706,
+        "name": "New Delhi, India",
+        "lat": 28.614243,
+        "lan": 77.202788
+    },
+    {
+        "id": 45287,
+        "name": "Other Locations",
+        "lat": -68.978,
+        "lan": 62.644
+    },
+    {
+        "id": 14756,
+        "name": "Paris, France",
+        "lat": 48.856663,
+        "lan": 2.351556
+    },
+    {
+        "id": 83003,
+        "name": "Reading, UK",
+        "lat": 51.460473,
+        "lan": -0.973226
+    },
+    {
+        "id": 12979,
+        "name": "SF Bay Area, USA",
+        "lat": 37.7654,
+        "lan": -122.3832
+    },
+    {
+        "id": 1426,
+        "name": "Sao Paulo, Brazil",
+        "lat": -23.544279,
+        "lan": -46.636972
+    },
+    {
+        "id": 5690,
+        "name": "Seoul, Korea",
+        "lat": 37.570705,
+        "lan": 126.976946
+    },
+    {
+        "id": 5044,
+        "name": "Shanghai, China",
+        "lat": 31.231311,
+        "lan": 121.470058
+    },
+    {
+        "id": 72917,
+        "name": "Singapore Publishing",
+        "lat": 1.2903,
+        "lan": 103.8374
+    },
+    {
+        "id": 72889,
+        "name": "Singapore Studio",
+        "lat": 1.2987,
+        "lan": 103.86154
+    },
+    {
+        "id": 886,
+        "name": "St. Louis, USA",
+        "lat": 38.635693,
+        "lan": -90.240729
+    },
+    {
+        "id": 1429,
+        "name": "Tokyo, Japan",
+        "lat": 35.681729,
+        "lan": 139.753927
+    }
+]
