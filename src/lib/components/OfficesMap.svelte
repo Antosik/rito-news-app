@@ -88,6 +88,7 @@
   #map {
     width: 100%;
     height: 100%;
+    position: relative;
   }
 
   :global(.riotgames-icon.selected) {

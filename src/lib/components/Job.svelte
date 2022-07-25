@@ -37,7 +37,7 @@
     width: 100%;
     flex-direction: column;
     border-radius: 12px;
-    border: 1px solid #ccc;
+    border: 2px solid #ccc;
     overflow: hidden;
     position: relative;
 

@@ -80,7 +80,7 @@
     width: 100%;
     flex-direction: column;
     border-radius: 12px;
-    border: 1px solid #ccc;
+    border: 2px solid #ccc;
     overflow: hidden;
     position: relative;
 
@@ -95,6 +95,10 @@
       overflow: hidden;
       width: var(--media-width);
       height: var(--media-height);
+
+      @include breakpoint(md) {
+        height: 100%;
+      }
 
       &-blur {
         position: absolute;
@@ -166,6 +170,7 @@
 
   :global(.article__source) {
     float: left;
-    margin-right: grid(1);
+    margin-top: grid(1);
+    margin-right: grid(2);
   }
 </style>
