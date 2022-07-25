@@ -1,9 +1,9 @@
 <script lang="ts">
   import { t } from 'svelte-intl-precompile';
 
+  import MediaQuery from '$lib/components/MediaQuery.svelte';
   import SourceIcon from '$lib/components/SourceIcon.svelte';
   import { Source } from '$lib/types/sources';
-  import MediaQuery from './MediaQuery.svelte';
 
   export let selected: Source[] = [];
 
@@ -19,12 +19,9 @@
 
 <ul>
   {#each options as option}
+    {@const toggled = selected.length === 0 || selected.includes(option)}
     <li>
-      <button
-        type="button"
-        class:toggled={selected.length === 0 || selected.includes(option)}
-        on:click={() => toggleSelect(option)}
-      >
+      <button type="button" aria-pressed={toggled} on:click={() => toggleSelect(option)}>
         <figure>
           <MediaQuery query="(min-width: 992px)" let:matches>
             <SourceIcon source={option} size={matches ? 32 : 24} />
@@ -61,7 +58,7 @@
       font-size: 16px;
     }
 
-    &.toggled {
+    &[aria-pressed='true'] {
       border: 2px solid $color-riotgames;
     }
   }

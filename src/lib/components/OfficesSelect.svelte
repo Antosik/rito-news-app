@@ -4,6 +4,8 @@
 
   import offices from '$lib/api/offices.json';
 
+  export let id: string;
+  export let name: string;
   export let selected: number[] = [];
 
   const options: ObjectOption[] = offices.map((el) => ({ value: el.id, label: el.name }));
@@ -26,6 +28,8 @@
 </script>
 
 <MultiSelect
+  {id}
+  {name}
   selected={selectedItems}
   {options}
   noOptionsMsg={$t('multiselect.noOptionsMsg')}

@@ -68,27 +68,31 @@
 
   <svelte:fragment slot="aside">
     <div class="tool">
-      <span>{$t('craft')}</span>
+      <label for="craft">{$t('craft')}</label>
       <MultiSelectString
+        id="craft"
+        name="craft"
         --sms-open-z-index={10000}
         bind:selected={selectedCrafts}
         options={availableCrafts}
       />
     </div>
     <div class="tool">
-      <span>{$t('product')}</span>
+      <label for="product">{$t('product')}</label>
       <MultiSelectString
+        id="product"
+        name="product"
         --sms-open-z-index={10000}
         bind:selected={selectedProducts}
         options={availableProducts}
       />
     </div>
     <div class="tool">
-      <span>{$t('office')}</span>
+      <label for="office">{$t('office')}</label>
       <div class="map">
         <OfficesMap bind:selected={selectedOffices} />
       </div>
-      <OfficesSelect bind:selected={selectedOffices} />
+      <OfficesSelect id="office" name="office" bind:selected={selectedOffices} />
     </div>
   </svelte:fragment>
 </Page>
