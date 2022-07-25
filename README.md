@@ -1,7 +1,7 @@
 # rito-news-app
-[![Build status](https://img.shields.io/github/workflow/status/Antosik/rito-news-app/lint)](https://github.com/Antosik/rito-news-app/actions/workflows/lint.yml)
+[![Build status](https://img.shields.io/github/workflow/status/Antosik/rito-news-app/lint)](https://github.com/Antosik/rito-news-app/actions/workflows/lint.yaml)
 
-## [News](https://rito-news-app.pages.dev/) | [Jobs](https://rito-news-app.pages.dev/jobs)
+## [News](https://rito-news.pages.dev/) | [Jobs](https://rito-news.pages.dev/jobs)
 
 ## About app
 Little web app that allows to read official news about Riot Games games or find jobs from Riot Games website.  
