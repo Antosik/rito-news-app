@@ -13,14 +13,14 @@ jobs:
         node-version: [16.x]
         os: [ubuntu-latest]
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
       - name: Setup Node.js
         uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
           cache: "npm"
-
-      - name: Checkout code
-        uses: actions/checkout@v3
 
       - name: Install and build
         run: |
