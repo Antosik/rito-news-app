@@ -1,6 +1,6 @@
 <script lang="ts">
-  import { fly } from 'svelte/transition';
-  import { locale } from 'svelte-intl-precompile';
+  import { fade, fly } from 'svelte/transition';
+  import { locale, t } from 'svelte-intl-precompile';
 
   import FeatherIcon from './FeatherIcon.svelte';
   import LanguageSelect from './LanguageSelect.svelte';
@@ -9,24 +9,43 @@
   export let title: string;
 
   let showLanguageModal = false;
-  const toggleLanguageModal = () => (showLanguageModal = !showLanguageModal);
+  const toggleLanguageModal = () => {
+    showLanguageModal = !showLanguageModal;
+    showAboutModal = false;
+    menuOpened = false;
+  };
+
+  let showAboutModal = false;
+  const toggleAboutModal = () => {
+    showAboutModal = !showAboutModal;
+    showLanguageModal = false;
+    menuOpened = false;
+  };
 
   let menuOpened = false;
-  const toggleMenu = () => (menuOpened = !menuOpened);
+  const toggleMenu = () => {
+    menuOpened = !menuOpened;
+    showLanguageModal = false;
+    showAboutModal = false;
+  };
 </script>
 
 <header>
   <h1>{title}</h1>
 
   <div class="tools">
-    <button class="language" class:active={showLanguageModal} on:click={toggleLanguageModal}>
+    <button class:active={showLanguageModal} on:click={toggleLanguageModal}>
       <FeatherIcon name="globe" size="18" />
+    </button>
+
+    <button class:active={showAboutModal} on:click={toggleAboutModal}>
+      <FeatherIcon name="info" size="18" />
     </button>
 
     <MediaQuery query="(min-width: 992px)" let:matches>
       {#if !matches}
-        <button class="menu" class:active={menuOpened} on:click={toggleMenu}>
-          <FeatherIcon name="menu" size="18" />
+        <button class:active={menuOpened} on:click={toggleMenu}>
+          <FeatherIcon name="filter" size="18" />
         </button>
       {/if}
     </MediaQuery>
@@ -42,18 +61,11 @@
     <aside>
       <slot name="aside" />
     </aside>
-  {:else}
-    <div
-      class="overlay"
-      style="--z-index-overlay: 1;"
-      class:visible={menuOpened}
-      on:click={toggleMenu}
-    />
-    {#if menuOpened}
-      <aside transition:fly={{ x: 1000, opacity: 1 }}>
-        <slot name="aside" />
-      </aside>
-    {/if}
+  {:else if menuOpened}
+    <div class="overlay" style="--z-index-overlay: 1;" on:click={toggleMenu} />
+    <aside transition:fly={{ x: 1000, opacity: 1 }}>
+      <slot name="aside" />
+    </aside>
   {/if}
 </MediaQuery>
 
@@ -61,12 +73,49 @@
   <div
     class="overlay"
     style="--z-index-overlay: 11;"
-    class:visible={showLanguageModal}
+    transition:fade={{ duration: 200 }}
     on:click={toggleLanguageModal}
   />
-  <div class="language-select">
+  <div
+    role="alertdialog"
+    aria-modal="true"
+    class="modal language-select"
+    transition:fade={{ duration: 200 }}
+  >
+    <h2 class="visually-hidden">{$t('change-language')}</h2>
     <FeatherIcon name="globe" size="18" />
     <LanguageSelect --sms-open-z-index={10000} bind:selected={$locale} />
+  </div>
+{/if}
+
+{#if showAboutModal}
+  <div
+    class="overlay"
+    style="--z-index-overlay: 11;"
+    transition:fade={{ duration: 200 }}
+    on:click={toggleAboutModal}
+  />
+  <div role="alertdialog" aria-modal="true" class="modal about" transition:fade={{ duration: 200 }}>
+    <h2 class="center">{$t('about')}</h2>
+
+    <p class="center">{$t('about-text')}</p>
+
+    <hr />
+
+    <p class="center">
+      <a sveltekit:prefetch href="/">{$t('news')}</a> |
+      <a sveltekit:prefetch href="/jobs">{$t('jobs')}</a>
+    </p>
+
+    <hr />
+
+    <p class="center">
+      <a href="https://github.com/Antosik/rito-news-app" target="_blank">{$t('source-code')}</a> |
+      <a href="https://github.com/Antosik/rito-news-feeds" target="_blank">rito-news-feeds</a> |
+      <a href="https://github.com/Antosik/rito-news" target="_blank">rito-news</a>
+    </p>
+    <p class="center" />
+    <p class="center">Antosik, 2022</p>
   </div>
 {/if}
 
@@ -135,29 +184,60 @@
     }
   }
 
-  .overlay.visible {
+  .overlay {
     content: '';
     position: absolute;
     top: 0;
     right: 0;
     bottom: 0;
     left: 0;
-    background: transparentize($color: $color-black, $amount: 0.8);
+    background: transparentize($color: $color-black, $amount: 0.7);
     z-index: var(--z-index-overlay, 1);
   }
 
-  .language-select {
+  .modal {
     position: absolute;
     padding: grid(4) grid(8);
-    top: 40%;
+    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    display: flex;
-    gap: grid(2);
-    align-items: center;
-    margin-top: auto;
     background: $color-white;
     z-index: 20;
     border-radius: 6px;
+  }
+
+  .language-select {
+    display: flex;
+    gap: grid(2);
+    align-items: center;
+  }
+
+  .about {
+    top: 50%;
+    width: 90%;
+
+    @include breakpoint(md) {
+      width: auto;
+    }
+
+    h2 {
+      margin-bottom: grid(3);
+    }
+
+    p {
+      margin-bottom: grid(1);
+    }
+
+    hr {
+      margin: grid(2) 0;
+    }
+
+    a {
+      text-decoration: underline;
+    }
+
+    .center {
+      text-align: center;
+    }
   }
 </style>

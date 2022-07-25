@@ -1,11 +1,17 @@
 {
-    "news": "Latest news",
+    "news": "News",
     "jobs": "Jobs",
     "loading": "Loading...",
     "failed": "Error occured",
     "craft": "Craft",
     "product": "Product",
     "office": "Office",
+    "change-language": "Change website language",
+    "about": "About",
+    "about-text": "Web app that allows to read official news about Riot Games games or find jobs from Riot Games website.",
+    "attribution": "Attribution",
+    "attribution-text": "This service isn't developed by Riot Games and doesn't reflect the views or opinions of Riot Games or anyone officially involved in producing or managing League of Legends, Legends of Runeterra, Teamfight Tactics, VALORANT, or Wild Rift. League of Legends, Legends of Runeterra, Teamfight Tactics, VALORANT, Wild Rift and Riot Games are trademarks or registered trademarks of Riot Games, Inc.",
+    "source-code": "Source code",
     "sources": {
         "lol": "League of Legends",
         "lol_esports": "LoL Esports",
