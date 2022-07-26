@@ -1,0 +1,9 @@
+{
+    "name": "rito-news",
+    "short_name": "rito-news",
+    "start_url": "/?utm_source=pwa",
+    "display": "standalone",
+    "background_color": "#fff",
+    "scope": "/",
+    "theme_color": "#fff"
+}
