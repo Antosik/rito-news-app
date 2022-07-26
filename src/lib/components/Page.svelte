@@ -34,17 +34,21 @@
   <h1>{title}</h1>
 
   <div class="tools">
-    <button class:active={showLanguageModal} on:click={toggleLanguageModal}>
+    <button
+      aria-label={$t('change-language')}
+      class:active={showLanguageModal}
+      on:click={toggleLanguageModal}
+    >
       <FeatherIcon name="globe" size="18" />
     </button>
 
-    <button class:active={showAboutModal} on:click={toggleAboutModal}>
+    <button aria-label={$t('about')} class:active={showAboutModal} on:click={toggleAboutModal}>
       <FeatherIcon name="info" size="18" />
     </button>
 
     <MediaQuery query="(min-width: 992px)" let:matches>
       {#if !matches}
-        <button class:active={menuOpened} on:click={toggleMenu}>
+        <button aria-label={$t('filters')} class:active={menuOpened} on:click={toggleMenu}>
           <FeatherIcon name="filter" size="18" />
         </button>
       {/if}

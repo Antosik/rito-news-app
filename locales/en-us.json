@@ -7,6 +7,8 @@
     "craft": "Craft",
     "product": "Product",
     "office": "Office",
+    "filters": "Filters",
+    "select": "Select",
     "change-language": "Change website language",
     "about": "About",
     "about-text": "Web app that allows to read official news about Riot Games games or find jobs from Riot Games website.",

@@ -1,7 +1,7 @@
 <script lang="ts">
   import type { DivIconOptions, MapOptions, TileLayerOptions } from 'leaflet';
   import 'leaflet/dist/leaflet.css';
-  import { locale } from 'svelte-intl-precompile';
+  import { locale, t } from 'svelte-intl-precompile';
   import { LeafletMap, TileLayer, Marker, DivIcon, Popup } from 'svelte-leafletjs?client';
 
   import { browser } from '$app/env';
@@ -72,7 +72,12 @@
                 >
                   Show info
                 </a>
-                <button type="button" class="control" on:click={() => toggleSelect(marker.id)}>
+                <button
+                  aria-label={$t('select')}
+                  type="button"
+                  class="control"
+                  on:click={() => toggleSelect(marker.id)}
+                >
                   <FeatherIcon name={selected.includes(marker.id) ? 'check' : 'filter'} size="14" />
                 </button>
               </div>

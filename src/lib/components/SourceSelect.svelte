@@ -21,7 +21,12 @@
   {#each options as option}
     {@const toggled = selected.length === 0 || selected.includes(option)}
     <li>
-      <button type="button" aria-pressed={toggled} on:click={() => toggleSelect(option)}>
+      <button
+        aria-label={`${$t('select')} ${$t(`sources.${option}`)}`}
+        type="button"
+        aria-pressed={toggled}
+        on:click={() => toggleSelect(option)}
+      >
         <figure>
           <MediaQuery query="(min-width: 992px)" let:matches>
             <SourceIcon source={option} size={matches ? 32 : 24} />
