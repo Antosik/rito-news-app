@@ -13,6 +13,7 @@
   import OfficesMap from '$lib/components/OfficesMap.svelte';
   import OfficesSelect from '$lib/components/OfficesSelect.svelte';
   import Page from '$lib/components/Page.svelte';
+  import Search from '$lib/components/Search.svelte';
   import VirtualList from '$lib/components/VirtualList.svelte';
   import type { JobsItem } from '$lib/types/jobs';
 
@@ -24,6 +25,7 @@
 
   let availableCrafts: string[] = [];
   let availableProducts: string[] = [];
+  let searchText: string;
   let selectedCrafts: string[] = [];
   let selectedProducts: string[] = [];
   let selectedOffices: number[] = [];
@@ -36,12 +38,14 @@
 
   const filterJobs = (
     jobs: JobsItem[],
+    searchText: string = '',
     offices: number[] = [],
     crafts: string[] = [],
     products: string[] = []
   ) => {
     return jobs.filter(
       (el) =>
+        (!searchText || el.title.toLowerCase().includes(searchText.toLowerCase())) &&
         (!offices.length || offices.includes(Number(el.office.id))) &&
         (!crafts.length || crafts.includes(el.craft.name)) &&
         (!products.length || products.includes(el.products))
@@ -57,7 +61,7 @@
   {:then data}
     <ul>
       <VirtualList
-        items={filterJobs(data, selectedOffices, selectedCrafts, selectedProducts)}
+        items={filterJobs(data, searchText, selectedOffices, selectedCrafts, selectedProducts)}
         let:item
       >
         <li in:fade={{ duration: 200 }}>
@@ -70,6 +74,10 @@
   {/await}
 
   <svelte:fragment slot="aside">
+    <div class="tool">
+      <label for="search">{$t('search')}</label>
+      <Search id="search" name="search" bind:value={searchText} />
+    </div>
     <div class="tool">
       <label for="craft">{$t('craft')}</label>
       <MultiSelectString
