@@ -8,6 +8,7 @@
 
   import { loadDataBySource } from '$lib/api/news';
   import Article from '$lib/components/Article.svelte';
+  import Loading from '$lib/components/Loading.svelte';
   import Page from '$lib/components/Page.svelte';
   import SourceSelect from '$lib/components/SourceSelect.svelte';
   import VirtualList from '$lib/components/VirtualList.svelte';
@@ -38,7 +39,9 @@
 
 <Page title={$t('news')}>
   {#await loadPromise}
-    <p>{$t('loading')}</p>
+    <div class="loading">
+      <Loading --color="#000" --size="40px" --border="4px" --speed="1s" />
+    </div>
   {:then data}
     <ul>
       <VirtualList items={data} let:item>
@@ -66,6 +69,12 @@
   .tool {
     margin-top: grid(2);
     margin-bottom: grid(2);
+  }
+
+  .loading {
+    @include flex_center;
+
+    padding: grid(8);
   }
 
   li {

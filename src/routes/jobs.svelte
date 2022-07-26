@@ -8,6 +8,7 @@
 
   import { loadData } from '$lib/api/news';
   import Job from '$lib/components/Job.svelte';
+  import Loading from '$lib/components/Loading.svelte';
   import MultiSelectString from '$lib/components/MultiSelectString.svelte';
   import OfficesMap from '$lib/components/OfficesMap.svelte';
   import OfficesSelect from '$lib/components/OfficesSelect.svelte';
@@ -50,7 +51,9 @@
 
 <Page title={$t('jobs')}>
   {#await loadPromise}
-    <p>{$t('loading')}</p>
+    <div class="loading">
+      <Loading --color="#000" --size="40px" --border="4px" --speed="1s" />
+    </div>
   {:then data}
     <ul>
       <VirtualList
@@ -105,6 +108,12 @@
   .tool {
     margin-top: grid(2);
     margin-bottom: grid(2);
+  }
+
+  .loading {
+    @include flex_center;
+
+    padding: grid(8);
   }
 
   .map {
