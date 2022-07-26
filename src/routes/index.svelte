@@ -43,13 +43,13 @@
       <Loading --color="#000" --size="40px" --border="4px" --speed="1s" />
     </div>
   {:then data}
-    <ul>
+    <div class="list-wrapper">
       <VirtualList items={data} let:item>
-        <li in:fade={{ duration: 200 }}>
+        <div class="item-wrapper" in:fade={{ duration: 200 }}>
           <Article {item} />
-        </li>
+        </div>
       </VirtualList>
-    </ul>
+    </div>
   {:catch}
     <p>{$t('failed')}</p>
   {/await}
@@ -62,8 +62,12 @@
 </Page>
 
 <style lang="scss">
-  ul {
+  .list-wrapper {
     height: 100%;
+  }
+
+  :global(.list-wrapper > div) {
+    padding-top: grid(6);
   }
 
   .tool {
@@ -77,7 +81,7 @@
     padding: grid(8);
   }
 
-  li {
+  .item-wrapper {
     display: flex;
     margin-bottom: grid(3);
     padding: 0 grid(4);
@@ -86,9 +90,5 @@
   p {
     margin: grid(4);
     text-align: center;
-  }
-
-  :global(svelte-virtual-list-viewport) {
-    padding-top: grid(6);
   }
 </style>

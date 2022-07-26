@@ -127,45 +127,40 @@
 
   // trigger initial refresh
   onMount(() => {
-    rows = contents.getElementsByTagName(
-      'svelte-virtual-list-row'
-    ) as HTMLCollectionOf<HTMLElement>;
+    rows = contents.getElementsByTagName('li') as HTMLCollectionOf<HTMLElement>;
     mounted = true;
   });
 </script>
 
-<svelte-virtual-list-viewport
+<div
   bind:this={viewport}
   bind:offsetHeight={viewport_height}
   on:scroll={handle_scroll}
   style="height: {height};"
 >
-  <svelte-virtual-list-contents
-    bind:this={contents}
-    style="padding-top: {top}px; padding-bottom: {bottom}px;"
-  >
+  <ul bind:this={contents} style="padding-top: {top}px; padding-bottom: {bottom}px;">
     {#each visible as row (row.index)}
-      <svelte-virtual-list-row>
+      <li>
         <slot item={row.data}>Missing template</slot>
-      </svelte-virtual-list-row>
+      </li>
     {/each}
-  </svelte-virtual-list-contents>
-</svelte-virtual-list-viewport>
+  </ul>
+</div>
 
 <style>
-  svelte-virtual-list-viewport {
+  div {
     position: relative;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
     display: block;
   }
 
-  svelte-virtual-list-contents,
-  svelte-virtual-list-row {
+  ul,
+  li {
     display: block;
   }
 
-  svelte-virtual-list-row {
+  li {
     overflow: hidden;
   }
 </style>
