@@ -62,7 +62,12 @@
       <slot name="aside" />
     </aside>
   {:else if menuOpened}
-    <div class="overlay" style="--z-index-overlay: 1;" on:click={toggleMenu} />
+    <div
+      class="overlay"
+      style="--z-index-overlay: 1;"
+      transition:fade={{ duration: 200 }}
+      on:click={toggleMenu}
+    />
     <aside transition:fly={{ x: 1000, opacity: 1 }}>
       <slot name="aside" />
     </aside>
@@ -120,12 +125,20 @@
 {/if}
 
 <style lang="scss">
+  :root {
+    --header-size: 75px;
+
+    @include breakpoint(md) {
+      --header-size: 100px;
+    }
+  }
+
   header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex: 1 0 100%;
-    height: 100px;
+    height: var(--header-size, 100px);
     flex-wrap: wrap;
     padding: 0 grid(8);
     box-shadow: 1px 2px 2px hsla(216, 15%, 87%, 0.333), 2px 4px 4px hsl(216, 15%, 87%, 0.333),
@@ -154,7 +167,7 @@
 
   main,
   aside {
-    height: calc(100% - 100px);
+    height: calc(100% - var(--header-size, 100px));
   }
 
   main {
@@ -165,7 +178,7 @@
     display: flex;
     width: 85%;
     position: absolute;
-    top: 100px;
+    top: var(--header-size, 100px);
     right: 0;
     overflow: auto;
     background: $color-white;
@@ -179,7 +192,7 @@
       width: 35%;
       top: initial;
       right: initial;
-      height: calc(100% - 100px);
+      height: calc(100% - var(--header-size, 100px));
       padding-left: grid(4);
     }
   }
