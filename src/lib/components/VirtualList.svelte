@@ -127,7 +127,7 @@
 
   // trigger initial refresh
   onMount(() => {
-    rows = contents.getElementsByTagName('li') as HTMLCollectionOf<HTMLElement>;
+    rows = contents.getElementsByClassName('vl-item') as HTMLCollectionOf<HTMLElement>;
     mounted = true;
   });
 </script>
@@ -136,11 +136,16 @@
   bind:this={viewport}
   bind:offsetHeight={viewport_height}
   on:scroll={handle_scroll}
+  class="vl-wrapper"
   style="height: {height};"
 >
-  <ul bind:this={contents} style="padding-top: {top}px; padding-bottom: {bottom}px;">
+  <ul
+    bind:this={contents}
+    class="vl-list"
+    style="padding-top: {top}px; padding-bottom: {bottom}px;"
+  >
     {#each visible as row (row.index)}
-      <li>
+      <li class="vl-item">
         <slot item={row.data}>Missing template</slot>
       </li>
     {/each}
