@@ -74,37 +74,39 @@
   {/await}
 
   <svelte:fragment slot="aside">
-    <div class="tool">
-      <label for="search">{$t('search')}</label>
-      <Search id="search" name="search" bind:value={searchText} />
-    </div>
-    <div class="tool">
-      <label for="craft">{$t('craft')}</label>
-      <MultiSelectString
-        id="craft"
-        name="craft"
-        --sms-open-z-index={10000}
-        bind:selected={selectedCrafts}
-        options={availableCrafts}
-      />
-    </div>
-    <div class="tool">
-      <label for="product">{$t('product')}</label>
-      <MultiSelectString
-        id="product"
-        name="product"
-        --sms-open-z-index={10000}
-        bind:selected={selectedProducts}
-        options={availableProducts}
-      />
-    </div>
-    <div class="tool">
-      <label for="office">{$t('office')}</label>
-      <div class="map">
-        <OfficesMap bind:selected={selectedOffices} />
-      </div>
-      <OfficesSelect id="office" name="office" bind:selected={selectedOffices} />
-    </div>
+    <ul class="tools">
+      <li class="tool">
+        <label for="search">{$t('search')}</label>
+        <Search id="search" name="search" bind:value={searchText} />
+      </li>
+      <li class="tool">
+        <label for="craft">{$t('craft')}</label>
+        <MultiSelectString
+          id="craft"
+          name="craft"
+          --sms-open-z-index={10000}
+          bind:selected={selectedCrafts}
+          options={availableCrafts}
+        />
+      </li>
+      <li class="tool">
+        <label for="product">{$t('product')}</label>
+        <MultiSelectString
+          id="product"
+          name="product"
+          --sms-open-z-index={10000}
+          bind:selected={selectedProducts}
+          options={availableProducts}
+        />
+      </li>
+      <li class="tool">
+        <label for="office">{$t('office')}</label>
+        <div class="map">
+          <OfficesMap bind:selected={selectedOffices} />
+        </div>
+        <OfficesSelect id="office" name="office" bind:selected={selectedOffices} />
+      </li>
+    </ul>
   </svelte:fragment>
 </Page>
 

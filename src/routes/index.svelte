@@ -55,9 +55,11 @@
   {/await}
 
   <svelte:fragment slot="aside">
-    <div class="tool">
-      <SourceSelect bind:selected={$selectedSources} />
-    </div>
+    <ul class="tools">
+      <li class="tool">
+        <SourceSelect bind:selected={$selectedSources} />
+      </li>
+    </ul>
   </svelte:fragment>
 </Page>
 

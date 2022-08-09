@@ -68,7 +68,7 @@
   {:else if menuOpened}
     <div
       class="overlay"
-      style="--z-index-overlay: 1;"
+      style="--z-index-overlay: 2;"
       transition:fade={{ duration: 200 }}
       on:click={toggleMenu}
     />
@@ -138,10 +138,13 @@
   }
 
   header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    flex: 1 0 100%;
     height: var(--header-size, 100px);
     flex-wrap: wrap;
     padding: 0 grid(8);
@@ -171,15 +174,20 @@
 
   main,
   aside {
+    position: relative;
+    top: var(--header-size, 100px);
     height: calc(100% - var(--header-size, 100px));
   }
 
   main {
-    flex: 1;
+    flex: 1 100%;
+
+    @include breakpoint(lg) {
+      flex: 1 65%;
+    }
   }
 
   aside {
-    display: flex;
     width: 85%;
     position: absolute;
     top: var(--header-size, 100px);
@@ -187,16 +195,13 @@
     overflow: auto;
     background: $color-white;
     z-index: 10;
-
-    flex-direction: column;
     padding: grid(6) grid(8) grid(8);
 
     @include breakpoint(lg) {
       position: relative;
       width: 35%;
-      top: initial;
+      top: var(--header-size, 100px);
       right: initial;
-      height: calc(100% - var(--header-size, 100px));
       padding-left: grid(4);
     }
   }
