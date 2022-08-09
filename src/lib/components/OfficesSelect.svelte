@@ -36,4 +36,11 @@
   disabledTitle={$t('multiselect.disabledTitle')}
   defaultDisabledTitle={$t('multiselect.defaultDisabledTitle')}
   on:change={onChange}
+  --sms-options-max-height="20vh"
 />
+
+<style lang="scss">
+  :root {
+    --sms-focus-border: 1px solid #{$color-riotgames};
+  }
+</style>

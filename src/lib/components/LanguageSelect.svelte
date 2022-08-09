@@ -21,6 +21,7 @@
   defaultDisabledTitle={$t('multiselect.defaultDisabledTitle')}
   on:change={onChange}
   {options}
+  --sms-options-max-height="30vh"
 >
   <span let:option slot="option">
     {$t(`locales.${option}`)}
@@ -32,6 +33,10 @@
 </MultiSelect>
 
 <style lang="scss">
+  :root {
+    --sms-focus-border: 1px solid #{$color-riotgames};
+  }
+
   span {
     display: flex;
     align-items: center;

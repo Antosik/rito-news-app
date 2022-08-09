@@ -14,10 +14,16 @@
     align-items: center;
     display: flex;
     cursor: text;
+    background: white;
     border: 1pt solid lightgray;
     border-radius: 3pt;
     padding: 0 3pt;
     font-size: inherit;
     min-height: 19pt;
+
+    &:focus {
+      border: 1pt solid #{$color-riotgames};
+      outline: none;
+    }
   }
 </style>

@@ -23,4 +23,11 @@
   noOptionsMsg={$t('multiselect.noOptionsMsg')}
   disabledTitle={$t('multiselect.disabledTitle')}
   defaultDisabledTitle={$t('multiselect.defaultDisabledTitle')}
+  --sms-options-max-height="30vh"
 />
+
+<style lang="scss">
+  :root {
+    --sms-focus-border: 1px solid #{$color-riotgames};
+  }
+</style>

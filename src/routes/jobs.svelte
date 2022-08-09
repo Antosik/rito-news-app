@@ -111,6 +111,10 @@
 </Page>
 
 <style lang="scss">
+  :root {
+    --sms-focus-border: 1px solid #{$color-riotgames};
+  }
+
   .list-wrapper {
     height: 100%;
   }
