@@ -52,7 +52,7 @@
     align-items: center;
     gap: grid(4);
     width: 100%;
-    border: 2px solid #ccc;
+    border: 2px solid $color-border;
     transition: border 200ms ease-in-out;
     padding: grid(2) grid(4);
     border-radius: 6px;

@@ -80,7 +80,7 @@
     width: 100%;
     flex-direction: column;
     border-radius: 12px;
-    border: 2px solid #ccc;
+    border: 2px solid $color-border;
     overflow: hidden;
     position: relative;
 
@@ -153,7 +153,7 @@
       display: flex;
       flex-direction: column;
       margin: auto grid(4) grid(3);
-      color: #6c6c6c;
+      color: $color-secondary;
       gap: grid(1);
 
       @include breakpoint(md) {
