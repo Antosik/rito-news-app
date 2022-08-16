@@ -162,7 +162,7 @@
   on:scroll={_onScroll}
   on:touchstart={_onTouchStart}
   on:touchend={_onTouchEnd}
-  on:touchmove={_onTouchMove}
+  on:touchmove|passive={_onTouchMove}
 >
   {#if showPtr}
     <div
