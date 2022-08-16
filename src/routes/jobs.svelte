@@ -17,14 +17,14 @@
   import VirtualList from '$lib/components/VirtualList.svelte';
   import type { JobsItem } from '$lib/types/jobs';
 
-  const load = () =>
-    loadData<JobsItem>('riotgames', $locale, 'jobs').then((res) => {
+  const load = (locale: string) =>
+    loadData<JobsItem>('riotgames', locale, 'jobs').then((res) => {
       availableProducts = Array.from(new Set(res.map((el) => el.products)));
       availableCrafts = Array.from(new Set(res.map((el) => el.craft.name)));
       return res;
     });
 
-  $: loadPromise = load();
+  $: loadPromise = load($locale);
 
   let availableCrafts: string[] = [];
   let availableProducts: string[] = [];
@@ -55,7 +55,7 @@
     );
   };
 
-  const onRefresh = () => (loadPromise = load());
+  const onRefresh = () => (loadPromise = load($locale));
 </script>
 
 <Page title={$t('jobs')}>

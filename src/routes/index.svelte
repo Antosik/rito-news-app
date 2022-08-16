@@ -24,10 +24,10 @@
 
   $: sourcesToLoad = $selectedSources?.length ? $selectedSources : Object.values(Source);
 
-  const load = (sources: Source[]) =>
+  const load = (sources: Source[], locale: string) =>
     Promise.all(
       sources.map(async (el) => {
-        return loadDataBySource<NewsItem>(el, $locale)
+        return loadDataBySource<NewsItem>(el, locale)
           .then((res) => res.map((item) => ({ ...item, source: el })))
           .catch(() => []);
       })
@@ -37,9 +37,9 @@
         .map((el) => ({ ...el, date: new Date(el.date) }))
         .sort((a, b) => b.date.getTime() - a.date.getTime())
     );
-  $: loadPromise = load(sourcesToLoad);
+  $: loadPromise = load(sourcesToLoad, $locale);
 
-  const onRefresh = () => (loadPromise = load(sourcesToLoad));
+  const onRefresh = () => (loadPromise = load(sourcesToLoad, $locale));
 </script>
 
 <Page title={$t('news')}>
