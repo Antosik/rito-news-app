@@ -23,18 +23,23 @@
   }
 
   $: sourcesToLoad = $selectedSources?.length ? $selectedSources : Object.values(Source);
-  $: loadPromise = Promise.all(
-    sourcesToLoad.map(async (el) => {
-      return loadDataBySource<NewsItem>(el, $locale)
-        .then((res) => res.map((item) => ({ ...item, source: el })))
-        .catch(() => []);
-    })
-  ).then((res) =>
-    res
-      .flat(1)
-      .map((el) => ({ ...el, date: new Date(el.date) }))
-      .sort((a, b) => b.date.getTime() - a.date.getTime())
-  );
+
+  const load = (sources: Source[]) =>
+    Promise.all(
+      sources.map(async (el) => {
+        return loadDataBySource<NewsItem>(el, $locale)
+          .then((res) => res.map((item) => ({ ...item, source: el })))
+          .catch(() => []);
+      })
+    ).then((res) =>
+      res
+        .flat(1)
+        .map((el) => ({ ...el, date: new Date(el.date) }))
+        .sort((a, b) => b.date.getTime() - a.date.getTime())
+    );
+  $: loadPromise = load(sourcesToLoad);
+
+  const onRefresh = () => (loadPromise = load(sourcesToLoad));
 </script>
 
 <Page title={$t('news')}>
@@ -44,7 +49,7 @@
     </div>
   {:then data}
     <div class="list-wrapper">
-      <VirtualList items={data} let:item>
+      <VirtualList items={data} let:item on:refresh={onRefresh}>
         <div class="item-wrapper" in:fade={{ duration: 200 }}>
           <Article {item} />
         </div>

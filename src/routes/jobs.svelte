@@ -17,11 +17,14 @@
   import VirtualList from '$lib/components/VirtualList.svelte';
   import type { JobsItem } from '$lib/types/jobs';
 
-  $: loadPromise = loadData<JobsItem>('riotgames', $locale, 'jobs').then((res) => {
-    availableProducts = Array.from(new Set(res.map((el) => el.products)));
-    availableCrafts = Array.from(new Set(res.map((el) => el.craft.name)));
-    return res;
-  });
+  const load = () =>
+    loadData<JobsItem>('riotgames', $locale, 'jobs').then((res) => {
+      availableProducts = Array.from(new Set(res.map((el) => el.products)));
+      availableCrafts = Array.from(new Set(res.map((el) => el.craft.name)));
+      return res;
+    });
+
+  $: loadPromise = load();
 
   let availableCrafts: string[] = [];
   let availableProducts: string[] = [];
@@ -51,6 +54,8 @@
         (!products.length || products.includes(el.products))
     );
   };
+
+  const onRefresh = () => (loadPromise = load());
 </script>
 
 <Page title={$t('jobs')}>
@@ -63,6 +68,7 @@
       <VirtualList
         items={filterJobs(data, searchText, selectedOffices, selectedCrafts, selectedProducts)}
         let:item
+        on:refresh={onRefresh}
       >
         <div class="item-wrapper" in:fade={{ duration: 200 }}>
           <Job {item} />

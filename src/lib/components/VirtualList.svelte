@@ -1,6 +1,8 @@
 <script lang="ts">
   // @sveltejs/svelte-virtual-list
   import { onMount, tick } from 'svelte';
+  import FeatherIcon from './FeatherIcon.svelte';
+  import PullToRefresh from './PullToRefresh.svelte';
 
   // props
   export let items: any[];
@@ -139,20 +141,25 @@
   class="vl-wrapper"
   style="height: {height};"
 >
-  <ul
-    bind:this={contents}
-    class="vl-list"
-    style="padding-top: {top}px; padding-bottom: {bottom}px;"
-  >
-    {#each visible as row (row.index)}
-      <li class="vl-item">
-        <slot item={row.data}>Missing template</slot>
-      </li>
-    {/each}
-  </ul>
+  <PullToRefresh shouldPullToRefresh={() => !top} on:refresh>
+    <span slot="icon">
+      <FeatherIcon name="arrow-down" size="40" />
+    </span>
+    <ul
+      bind:this={contents}
+      class="vl-list"
+      style="padding-top: {top}px; padding-bottom: {bottom}px;"
+    >
+      {#each visible as row (row.index)}
+        <li class="vl-item">
+          <slot item={row.data}>Missing template</slot>
+        </li>
+      {/each}
+    </ul>
+  </PullToRefresh>
 </div>
 
-<style>
+<style lang="scss">
   div {
     position: relative;
     overflow-y: auto;
@@ -167,5 +174,9 @@
 
   li {
     overflow: hidden;
+  }
+
+  span {
+    color: $color-black
   }
 </style>
