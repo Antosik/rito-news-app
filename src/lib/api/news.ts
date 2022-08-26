@@ -5,9 +5,9 @@ export async function loadData<T>(type: string, locale = 'en-us', mode = 'news')
   if (type.includes('riotgames')) {
     locale = localeToRiotGamesLocaleMap[locale as Locale] ?? locale;
   }
-  return fetch(`https://rito-news.iamantosik.me/${type}/${locale}/${mode}.json`).then((res) =>
-    res.json()
-  );
+  return fetch(`https://rito-news.iamantosik.me/${type}/${locale}/${mode}.json`, {
+    cache: 'no-cache'
+  }).then((res) => res.json());
 }
 
 export async function loadDataBySource<T>(
