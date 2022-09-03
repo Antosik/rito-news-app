@@ -52,8 +52,7 @@
         <ul class="article__tags">
           {#each tags as tag, i}
             <li>
-              {tag[0].toUpperCase() +
-                tag.slice(1).toLowerCase()}{#if i != tags.length - 1},&nbsp;{/if}
+              {tag}{#if i != tags.length - 1},&nbsp;{/if}
             </li>
           {/each}
         </ul>
@@ -152,6 +151,7 @@
     &__footer {
       display: flex;
       flex-direction: column;
+      flex-wrap: wrap;
       margin: auto grid(4) grid(3);
       color: $color-secondary;
       gap: grid(1);
@@ -165,6 +165,11 @@
     &__tags {
       list-style: none;
       display: flex;
+      flex-wrap: wrap;
+
+      @include breakpoint(md) {
+        justify-content: flex-end;
+      }
     }
   }
 
