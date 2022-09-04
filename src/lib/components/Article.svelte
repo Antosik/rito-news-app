@@ -6,6 +6,7 @@
 
   export let item: NewsItem;
 
+  $: image = item.image ? formatImage(item.image) : null;
   $: tags = [
     ...(item.categories ?? []),
     ...(item.tags ?? []),
@@ -19,13 +20,25 @@
     hour: '2-digit',
     minute: '2-digit'
   };
+
+  function formatImage(imageUrl: string) {
+    try {
+      const url = new URL(imageUrl);
+      if (url.hostname.includes('images.contentstack.io')) {
+        url.searchParams.set('height', '200');
+      }
+      return url.toString();
+    } catch {
+      return imageUrl;
+    }
+  }
 </script>
 
 <article class="article">
-  {#if item.image}
+  {#if image}
     <figure class="article__media">
-      <img class="article__media-image" src={item.image} alt="" />
-      <div class="article__media-blur" style:background-image={`url("${item.image}")`} />
+      <img class="article__media-image" src={image} alt="" />
+      <div class="article__media-blur" style:background-image={`url("${image}")`} />
     </figure>
   {/if}
 
