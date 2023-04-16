@@ -4,7 +4,7 @@
   import { locale, t } from 'svelte-intl-precompile';
   import { LeafletMap, TileLayer, Marker, DivIcon, Popup } from 'svelte-leafletjs?client';
 
-  import { browser } from '$app/env';
+  import { browser } from '$app/environment';
 
   import markers from '$lib/api/offices.json';
   import FeatherIcon from '$lib/components/FeatherIcon.svelte';

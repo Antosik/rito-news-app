@@ -2,7 +2,7 @@
   import { fade } from 'svelte/transition';
   import { t, locale } from 'svelte-intl-precompile';
 
-  import { browser } from '$app/env';
+  import { browser } from '$app/environment';
   import { goto } from '$app/navigation';
   import { page } from '$app/stores';
 
