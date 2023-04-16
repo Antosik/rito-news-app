@@ -124,7 +124,7 @@
       <a href="https://github.com/Antosik/rito-news" target="_blank">rito-news</a>
     </p>
     <p class="center" />
-    <p class="center">Antosik, 2022</p>
+    <p class="center"><a href="https://iamantosik.me" target="_blank">Antosik</a>, 2023</p>
   </div>
 {/if}
 
