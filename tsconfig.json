@@ -11,7 +11,22 @@
 		"strict": true,
 		"plugins": [{ "name": "vite-plugin-iso-import" }],
 		"types": [
-			"svelte-intl-precompile"
-		]
+			"svelte-intl-precompile",
+			"svelte-multiselect"
+		],
+		"paths": {
+			"$lib": [
+				"./src/lib"
+			],
+			"$lib/*": [
+				"./src/lib/*"
+			],
+			"$locales": [
+				"./locales"
+			],
+			"$locales/*": [
+				"./locales/*"
+			],
+		},
 	},
 }
