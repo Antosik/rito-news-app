@@ -1,13 +1,14 @@
+import { Locale } from '$lib/types/locale';
+
 import { getLocaleFromQueryString, init, locale, waitLocale } from 'svelte-intl-precompile';
 
 import { getLocaleFromLocalStorage, saveLocaleToLocalStorage } from '$lib/stores/locales';
-import { Locale } from '$lib/types/locale';
 
 import { registerAll } from '$locales';
 
-export async function load() {
-  registerAll();
+registerAll();
 
+export async function load() {
   init({
     initialLocale:
       getLocaleFromQueryString('locale') ??

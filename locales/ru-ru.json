@@ -14,8 +14,7 @@
     "about-text": "Веб-приложение, позволяющее читать официальные новости об играх Riot Games или находить вакансии на сайте Riot Games.",
     "source-code": "Исходный код сайта",
     "multiselect": {
-        "noOptionsMsg": "Нет подходящих параметров",
-        "disabledTitle": "Редактирование этого поля недоступно",
+        "noMatchingOptionsMsg": "Нет подходящих параметров",
         "defaultDisabledTitle": "Эта опция недоступна"
     }
 }

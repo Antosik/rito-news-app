@@ -1,7 +1,8 @@
 <script lang="ts">
+  import type { Source } from '$lib/types/sources';
+
   import { t } from 'svelte-intl-precompile';
 
-  import type { Source } from '$lib/types/sources';
   import lolLogo from '$lib/icons/lol.svg';
   import lolEsportsLogo from '$lib/icons/lol_esports.svg';
   import lorLogo from '$lib/icons/lor.svg';
@@ -14,7 +15,7 @@
 
   export let className: string | undefined = undefined;
   export let source: Source;
-  export let size: number = 24;
+  export let size = 24;
 
   const sourcesIcons: Record<Source, string> = {
     lol: lolLogo,

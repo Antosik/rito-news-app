@@ -1,6 +1,7 @@
 <script lang="ts">
   // @sveltejs/svelte-virtual-list
   import { onMount, tick } from 'svelte';
+
   import FeatherIcon from './FeatherIcon.svelte';
   import PullToRefresh from './PullToRefresh.svelte';
 
@@ -162,9 +163,9 @@
 <style lang="scss">
   div {
     position: relative;
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
     display: block;
+    -webkit-overflow-scrolling: touch;
+    overflow-y: auto;
   }
 
   ul,
@@ -177,6 +178,6 @@
   }
 
   span {
-    color: $color-black
+    color: $color-black;
   }
 </style>

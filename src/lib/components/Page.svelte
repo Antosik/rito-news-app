@@ -68,7 +68,7 @@
   {:else if menuOpened}
     <div
       class="overlay"
-      style="--z-index-overlay: 2;"
+      style:--z-index-overlay={2}
       transition:fade={{ duration: 200 }}
       on:click={toggleMenu}
     />
@@ -81,7 +81,7 @@
 {#if showLanguageModal}
   <div
     class="overlay"
-    style="--z-index-overlay: 11;"
+    style:--z-index-overlay={11}
     transition:fade={{ duration: 200 }}
     on:click={toggleLanguageModal}
   />
@@ -100,7 +100,7 @@
 {#if showAboutModal}
   <div
     class="overlay"
-    style="--z-index-overlay: 11;"
+    style:--z-index-overlay={11}
     transition:fade={{ duration: 200 }}
     on:click={toggleAboutModal}
   />
@@ -112,8 +112,8 @@
     <hr />
 
     <p class="center">
-      <a sveltekit:prefetch href="/">{$t('news')}</a> |
-      <a sveltekit:prefetch href="/jobs">{$t('jobs')}</a>
+      <a data-sveltekit-preload-data href="/">{$t('news')}</a> |
+      <a data-sveltekit-preload-data href="/jobs">{$t('jobs')}</a>
     </p>
 
     <hr />
@@ -139,19 +139,19 @@
 
   header {
     position: fixed;
+    z-index: 100000;
     top: 0;
     left: 0;
-    width: 100%;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    width: 100%;
     height: var(--header-size, 100px);
     flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
     padding: 0 grid(8);
-    box-shadow: 1px 2px 2px hsla(216, 15%, 87%, 0.333), 2px 4px 4px hsl(216, 15%, 87%, 0.333),
-      3px 6px 6px hsl(216, 15%, 87%, 0.333);
     background: $color-white;
-    z-index: 100000;
+    box-shadow: 1px 2px 2px hsl(216deg 15% 87% / 33.3%), 2px 4px 4px hsl(216deg 15% 87% / 33.3%),
+      3px 6px 6px hsl(216deg 15% 87% / 33.3%);
   }
 
   .tools {
@@ -163,9 +163,9 @@
   button {
     @include flex_center;
 
-    background: transparent;
-    border: 0;
     padding: grid(1);
+    border: 0;
+    background: transparent;
 
     &.active {
       color: $color-riotgames;
@@ -188,50 +188,50 @@
   }
 
   aside {
-    width: 85%;
     position: absolute;
+    z-index: 10;
     top: var(--header-size, 100px);
     right: 0;
     overflow: auto;
-    background: $color-white;
-    z-index: 10;
+    width: 85%;
     padding: grid(6) grid(8) grid(8);
+    background: $color-white;
 
     @include breakpoint(lg) {
       position: relative;
-      width: 35%;
       top: var(--header-size, 100px);
       right: initial;
+      width: 35%;
       padding-left: grid(4);
     }
   }
 
   .overlay {
-    content: '';
     position: absolute;
+    z-index: var(--z-index-overlay, 1);
     top: 0;
     right: 0;
     bottom: 0;
     left: 0;
-    background: transparentize($color: $color-black, $amount: 0.7);
-    z-index: var(--z-index-overlay, 1);
+    background: color_adjust_alpha($color: $color-black, $amount: 0.7);
+    content: '';
   }
 
   .modal {
     position: absolute;
-    padding: grid(4) grid(8);
+    z-index: 20;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
-    background: $color-white;
-    z-index: 20;
+    padding: grid(4) grid(8);
     border-radius: 6px;
+    background: $color-white;
+    transform: translate(-50%, -50%);
   }
 
   .language-select {
     display: flex;
-    gap: grid(2);
     align-items: center;
+    gap: grid(2);
   }
 
   .about {

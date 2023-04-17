@@ -4,7 +4,7 @@
   let className = '';
   export { className as class };
 
-  export let name = 'star';
+  export let name: keyof typeof icons = 'star';
   export let size = '100%';
   export let strokeWidth = 2;
   export let strokeLineCap: 'butt' | 'round' | 'square' = 'round';

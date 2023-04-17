@@ -1,4 +1,6 @@
 <script lang="ts">
+  import type { JobsItem } from '$lib/types/jobs';
+
   import { fade } from 'svelte/transition';
   import { locale, t } from 'svelte-intl-precompile';
 
@@ -15,7 +17,6 @@
   import Page from '$lib/components/Page.svelte';
   import Search from '$lib/components/Search.svelte';
   import VirtualList from '$lib/components/VirtualList.svelte';
-  import type { JobsItem } from '$lib/types/jobs';
 
   const load = (locale: string) =>
     loadData<JobsItem>('riotgames', locale, 'jobs').then((res) => {
@@ -41,7 +42,7 @@
 
   const filterJobs = (
     jobs: JobsItem[],
-    searchText: string = '',
+    searchText = '',
     offices: number[] = [],
     crafts: string[] = [],
     products: string[] = []
@@ -151,8 +152,8 @@
 
   .item-wrapper {
     display: flex;
-    margin-bottom: grid(3);
     padding: 0 grid(4);
+    margin-bottom: grid(3);
   }
 
   p {

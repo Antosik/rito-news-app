@@ -1,6 +1,6 @@
-import { writable } from 'svelte/store';
-
 import type { Source } from '$lib/types/sources';
+
+import { writable } from 'svelte/store';
 
 const getInitialValue = () => {
   if (typeof window === 'undefined') return [];

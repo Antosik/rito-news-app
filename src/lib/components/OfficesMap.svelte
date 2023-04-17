@@ -1,5 +1,7 @@
 <script lang="ts">
+  import { Locale, localeToRiotGamesLocaleMap } from '$lib/types/locale';
   import type { DivIconOptions, MapOptions, TileLayerOptions } from 'leaflet';
+
   import 'leaflet/dist/leaflet.css';
   import { locale, t } from 'svelte-intl-precompile';
   import { LeafletMap, TileLayer, Marker, DivIcon, Popup } from 'svelte-leafletjs?client';
@@ -8,7 +10,6 @@
 
   import markers from '$lib/api/offices.json';
   import FeatherIcon from '$lib/components/FeatherIcon.svelte';
-  import { Locale, localeToRiotGamesLocaleMap } from '$lib/types/locale';
 
   export let selected: number[] = [];
 
@@ -91,9 +92,9 @@
 
 <style lang="scss">
   #map {
+    position: relative;
     width: 100%;
     height: 100%;
-    position: relative;
   }
 
   :global(.riotgames-icon.selected) {
@@ -122,6 +123,7 @@
 
       button {
         @include flex_center;
+
         border: 0;
       }
     }

@@ -1,3 +1,4 @@
+@use 'sass:color';
 @use 'sass:map';
 
 $breakpoints: (
@@ -7,7 +8,7 @@ $breakpoints: (
   lg: 992px,
   xl: 1200px,
   xxl: 1920px,
-  xxxl: 2560px,
+  xxxl: 2560px
 );
 
 @mixin breakpoint($point) {
@@ -22,6 +23,10 @@ $breakpoints: (
 
 @mixin flex_center {
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+}
+
+@function color_adjust_alpha($color, $amount) {
+  @return color.adjust($color, $alpha: -$amount);
 }
