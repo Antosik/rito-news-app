@@ -1,15 +1,14 @@
-@import './scss/index.scss';
+@import './scss/index';
 
 body {
   position: relative;
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  height: 100%;
   overflow: hidden;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial,
-    sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+  height: 100%;
+  flex-flow: row wrap;
   color: $color-black;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif,
+    'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
 }
 
 h1 {

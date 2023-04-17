@@ -1,8 +1,9 @@
 <script lang="ts">
+  import type { NewsItem } from '$lib/types/news';
+
   import { locale } from 'svelte-intl-precompile';
 
   import SourceIcon from '$lib/components/SourceIcon.svelte';
-  import type { NewsItem } from '$lib/types/news';
 
   export let item: NewsItem;
 
@@ -88,13 +89,13 @@
   }
 
   .article {
+    position: relative;
     display: flex;
+    overflow: hidden;
     width: 100%;
     flex-direction: column;
-    border-radius: 12px;
     border: 2px solid $color-border;
-    overflow: hidden;
-    position: relative;
+    border-radius: 12px;
 
     @include breakpoint(md) {
       flex-direction: row;
@@ -103,10 +104,10 @@
     &__media {
       position: relative;
       display: flex;
-      flex-shrink: 0;
       overflow: hidden;
       width: var(--media-width);
       height: var(--media-height);
+      flex-shrink: 0;
 
       @include breakpoint(md) {
         height: 100%;
@@ -129,15 +130,15 @@
         display: block;
         max-width: var(--media-width);
         max-height: var(--media-height);
-        object-fit: contain;
         margin: auto;
+        object-fit: contain;
       }
     }
 
     &__content {
       display: flex;
-      flex-direction: column;
       flex: 1;
+      flex-direction: column;
     }
 
     h2 {
@@ -148,12 +149,12 @@
       color: $color-black;
 
       &::before {
-        content: '';
         position: absolute;
         top: 0;
-        left: 0;
         right: 0;
         bottom: 0;
+        left: 0;
+        content: '';
       }
     }
 
@@ -163,8 +164,7 @@
 
     &__footer {
       display: flex;
-      flex-direction: column;
-      flex-wrap: wrap;
+      flex-flow: column wrap;
       margin: auto grid(4) grid(3);
       color: $color-secondary;
       gap: grid(1);
@@ -176,9 +176,9 @@
     }
 
     &__tags {
-      list-style: none;
       display: flex;
       flex-wrap: wrap;
+      list-style: none;
 
       @include breakpoint(md) {
         justify-content: flex-end;
@@ -187,8 +187,8 @@
   }
 
   :global(.article__source) {
-    float: left;
     margin-top: grid(1);
     margin-right: grid(2);
+    float: left;
   }
 </style>

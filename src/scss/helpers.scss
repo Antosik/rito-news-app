@@ -1,8 +1,8 @@
-@import "./mixins.scss";
+@import './mixins';
 
 *,
-*:before,
-*:after {
+*::before,
+*::after {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
@@ -19,8 +19,8 @@ html {
 }
 
 a {
+  color: currentcolor;
   text-decoration: none;
-  color: currentColor;
 }
 
 ul {
@@ -33,8 +33,8 @@ input,
 select {
   color: inherit;
   cursor: pointer;
-  font-size: inherit;
   font-family: inherit;
+  font-size: inherit;
 }
 
 img {
@@ -42,10 +42,10 @@ img {
 }
 
 .visually-hidden {
-  clip: rect(1px, 1px, 1px, 1px);
-  height: 1px;
-  overflow: hidden;
   position: absolute;
-  white-space: nowrap;
+  overflow: hidden;
   width: 1px;
+  height: 1px;
+  clip: rect(1px, 1px, 1px, 1px);
+  white-space: nowrap;
 }

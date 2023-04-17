@@ -1,4 +1,7 @@
 <script lang="ts">
+  import type { NewsItem } from '$lib/types/news';
+  import { Source } from '$lib/types/sources';
+
   import { fade } from 'svelte/transition';
   import { t, locale } from 'svelte-intl-precompile';
 
@@ -13,8 +16,6 @@
   import SourceSelect from '$lib/components/SourceSelect.svelte';
   import VirtualList from '$lib/components/VirtualList.svelte';
   import { selectedSources } from '$lib/stores/sources';
-  import type { NewsItem } from '$lib/types/news';
-  import { Source } from '$lib/types/sources';
 
   $: if (browser) {
     const url = new URL($page.url);
@@ -90,8 +91,8 @@
 
   .item-wrapper {
     display: flex;
-    margin-bottom: grid(3);
     padding: 0 grid(4);
+    margin-bottom: grid(3);
   }
 
   p {

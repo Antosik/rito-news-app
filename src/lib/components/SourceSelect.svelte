@@ -1,9 +1,10 @@
 <script lang="ts">
+  import { Source } from '$lib/types/sources';
+
   import { t } from 'svelte-intl-precompile';
 
   import MediaQuery from '$lib/components/MediaQuery.svelte';
   import SourceIcon from '$lib/components/SourceIcon.svelte';
-  import { Source } from '$lib/types/sources';
 
   export let selected: Source[] = [];
 
@@ -49,16 +50,15 @@
 
   button {
     display: flex;
-    align-items: center;
-    gap: grid(4);
     width: 100%;
-    border: 2px solid $color-border;
-    transition: border 200ms ease-in-out;
+    align-items: center;
     padding: grid(2) grid(4);
+    border: 2px solid $color-border;
     border-radius: 6px;
     background: transparent;
-
     font-size: 14px;
+    gap: grid(4);
+    transition: border 200ms ease-in-out;
     @include breakpoint(md) {
       font-size: 16px;
     }

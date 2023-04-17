@@ -33,18 +33,18 @@
 
 <style lang="scss">
   .article {
+    position: relative;
     display: flex;
+    overflow: hidden;
     width: 100%;
     flex-direction: column;
-    border-radius: 12px;
     border: 2px solid $color-border;
-    overflow: hidden;
-    position: relative;
+    border-radius: 12px;
 
     &__content {
       display: flex;
-      flex-direction: column;
       flex: 1;
+      flex-direction: column;
     }
 
     h2 {
@@ -55,12 +55,12 @@
       color: $color-black;
 
       &::before {
-        content: '';
         position: absolute;
         top: 0;
-        left: 0;
         right: 0;
         bottom: 0;
+        left: 0;
+        content: '';
       }
     }
 
@@ -78,14 +78,13 @@
     }
 
     &__tags {
-      list-style: none;
       display: flex;
-      flex-direction: row;
-      flex-wrap: wrap;
+      flex-flow: row wrap;
+      list-style: none;
 
       li:not(:last-child)::after {
-        content: ';';
         margin-right: grid(1);
+        content: ';';
       }
     }
   }

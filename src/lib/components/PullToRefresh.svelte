@@ -193,35 +193,41 @@
   .ptr-wrapper {
     display: contents;
   }
+
   .ptr {
-    pointer-events: none;
+    top: 0;
+    display: flex;
+    overflow: hidden;
+    width: 100%;
+    height: 0;
+    align-content: stretch;
+    align-items: flex-end;
     font-size: 0.85em;
     font-weight: bold;
-    top: 0;
-    height: 0;
-    transition: height 0.3s, min-height 0.3s;
+    pointer-events: none;
     text-align: center;
-    width: 100%;
-    overflow: hidden;
-    display: flex;
-    align-items: flex-end;
-    align-content: stretch;
+    transition: height 0.3s, min-height 0.3s;
   }
+
   .box {
-    padding: 10px;
     flex-basis: 100%;
+    padding: 10px;
   }
+
   .pull {
     transition: none;
   }
+
   .text {
     margin-top: 0.33em;
-    color: rgba(0, 0, 0, 0.3);
+    color: rgb(0 0 0 / 30%);
   }
+
   .icon {
-    color: rgba(0, 0, 0, 0.3);
+    color: rgb(0 0 0 / 30%);
     transition: transform 0.3s;
   }
+
   /*
     When at the top of the page, disable vertical overscroll so passive touch
     listeners can take over.
@@ -229,6 +235,7 @@
   .top {
     touch-action: pan-x pan-down pinch-zoom;
   }
+
   .release .icon {
     transform: rotate(180deg);
   }

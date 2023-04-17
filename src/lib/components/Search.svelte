@@ -9,17 +9,17 @@
 <style lang="scss">
   input {
     position: relative;
-    width: 100%;
-    margin: grid(1) 0;
-    align-items: center;
     display: flex;
-    cursor: text;
-    background: white;
+    width: 100%;
+    min-height: 19pt;
+    align-items: center;
+    padding: 0 3pt;
     border: 1pt solid lightgray;
     border-radius: 3pt;
-    padding: 0 3pt;
+    margin: grid(1) 0;
+    background: white;
+    cursor: text;
     font-size: inherit;
-    min-height: 19pt;
 
     &:focus {
       border: 1pt solid #{$color-riotgames};

@@ -20,8 +20,7 @@
   {name}
   options={sortedOptions}
   {sortSelected}
-  noOptionsMsg={$t('multiselect.noOptionsMsg')}
-  disabledTitle={$t('multiselect.disabledTitle')}
+  noMatchingOptionsMsg={$t('multiselect.noMatchingOptionsMsg')}
   defaultDisabledTitle={$t('multiselect.defaultDisabledTitle')}
   --sms-options-max-height="30vh"
 />

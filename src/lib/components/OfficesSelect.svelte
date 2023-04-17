@@ -32,8 +32,7 @@
   {name}
   selected={selectedItems}
   {options}
-  noOptionsMsg={$t('multiselect.noOptionsMsg')}
-  disabledTitle={$t('multiselect.disabledTitle')}
+  noMatchingOptionsMsg={$t('multiselect.noMatchingOptionsMsg')}
   defaultDisabledTitle={$t('multiselect.defaultDisabledTitle')}
   on:change={onChange}
   --sms-options-max-height="20vh"
