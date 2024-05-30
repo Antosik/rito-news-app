@@ -1,3 +1,4 @@
+/** @type { import("eslint").Linter.Config } */
 module.exports = {
 	root: true,
 	parser: '@typescript-eslint/parser',
@@ -5,11 +6,12 @@ module.exports = {
 		project: './tsconfig.json',
 		sourceType: 'module',
 		ecmaVersion: 2020,
-		extraFileExtensions: ['.svelte']
+		extraFileExtensions: ['.svelte'],
 	},
-	plugins: ['svelte3', '@typescript-eslint/eslint-plugin'],
+	plugins: ['@typescript-eslint/eslint-plugin'],
 	extends: [
 		'plugin:@typescript-eslint/recommended',
+		'plugin:svelte/recommended',
 		'plugin:prettier/recommended',
 		'plugin:import/recommended',
 		'plugin:import/typescript',
@@ -17,53 +19,67 @@ module.exports = {
 	env: {
 		browser: true,
 		es2017: true,
-		node: true
+		node: true,
 	},
 	ignorePatterns: ['*.cjs', '.gitignore', 'svelte.config.js', 'vite.config.js'],
-	overrides: [{ files: ['*.svelte'], processor: 'svelte3/svelte3' }],
+	overrides: [
+		{
+			files: ['*.svelte'],
+			parser: 'svelte-eslint-parser',
+			parserOptions: {
+				parser: '@typescript-eslint/parser',
+			},
+		}
+	],
 	settings: {
-    'svelte3/typescript': true,
-    "svelte3/ignore-styles": ({ lang }) => !!lang,
-		"import/resolver": {
-			typescript: {} // this loads <rootdir>/tsconfig.json to eslint
+		svelte: {
+			kit: {
+				files: {
+					routes: 'src/routes',
+				},
+			},
+		},
+		'import/resolver': {
+			typescript: {}
 		},
 	},
 	rules: {
+		'@typescript-eslint/no-namespace': 'off',
 		'import/order': [
 			'error',
 			{
 				pathGroups: [
-          {
-            pattern: '$app/**',
-            group: 'internal',
-          },
-          {
-            pattern: '$lib/!(types)**/**',
-            group: 'parent',
-          },
-          {
-            pattern: '$lib/types',
-            group: 'type',
-          },
-          {
-            pattern: '$lib/types/**',
-            group: 'type',
-          }
+					{
+						pattern: '$app/**',
+						group: 'internal',
+					},
+					{
+						pattern: '$lib/!(types)**/**',
+						group: 'parent',
+					},
+					{
+						pattern: '$lib/types',
+						group: 'type',
+					},
+					{
+						pattern: '$lib/types/**',
+						group: 'type',
+					}
 				],
 				'newlines-between': 'always',
 				alphabetize: {
 					order: 'asc',
 				},
 				groups: [
-          'type',
-          'builtin',
-          'external',
-          'internal',
-          'parent',
-          ['sibling', 'index'],
+					'type',
+					'builtin',
+					'external',
+					'internal',
+					'parent',
+					['sibling', 'index'],
 				],
 			},
 		],
-    'import/no-unresolved': [2, { ignore: ['^\\$[env|app|locales]'] }]
+		'import/no-unresolved': [2, { ignore: ['^\\$[env|app]'] }]
 	},
 };
