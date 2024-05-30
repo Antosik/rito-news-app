@@ -5,9 +5,10 @@ export async function loadData<T>(type: string, locale = 'en-us', mode = 'news')
   if (type.includes('riotgames')) {
     locale = localeToRiotGamesLocaleMap[locale as Locale] ?? locale;
   }
-  return fetch(`https://rito-news.iamantosik.me/${type}/${locale}/${mode}.json`, {
+
+  return fetch(`https://data.rito.news/${type}/${locale}/${mode}.json`, {
     cache: 'no-cache',
-  }).then((res) => res.json());
+  }).then((res) => res.json() as Promise<T[]>);
 }
 
 export async function loadDataBySource<T>(
