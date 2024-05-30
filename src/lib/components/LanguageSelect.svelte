@@ -2,7 +2,7 @@
   import { Locale } from '$lib/types/locale';
 
   import { t } from 'svelte-intl-precompile';
-  import MultiSelect, { type Option } from 'svelte-multiselect';
+  import { MultiSelect, type Option } from 'svelte-multiselect';
 
   export let selected: string;
 

@@ -27,7 +27,7 @@ export enum Locale {
   Indonesian = 'id-id',
   Arabic_UnitedArabEmirates = 'ar-ae',
   Malay_Malaysia = 'ms-my',
-  Chenese_Malaysia = 'zh-my'
+  Chenese_Malaysia = 'zh-my',
 }
 
 export enum RiotGamesLocale {
@@ -52,7 +52,7 @@ export enum RiotGamesLocale {
   Thai = 'th',
   Chinese_Traditional = 'zh-hant',
   Turkish = 'tr',
-  Vietnamese = 'vi'
+  Vietnamese = 'vi',
 }
 
 export const localeToRiotGamesLocaleMap: Partial<Record<Locale, RiotGamesLocale>> = {
@@ -82,5 +82,5 @@ export const localeToRiotGamesLocaleMap: Partial<Record<Locale, RiotGamesLocale>
   [Locale.Chenese_Malaysia]: RiotGamesLocale.Chinese_Traditional,
   [Locale.Chinese_Taiwan]: RiotGamesLocale.Chinese_Traditional,
   [Locale.Turkish]: RiotGamesLocale.Turkish,
-  [Locale.Vietnamese_Vietnam]: RiotGamesLocale.Vietnamese
+  [Locale.Vietnamese_Vietnam]: RiotGamesLocale.Vietnamese,
 };

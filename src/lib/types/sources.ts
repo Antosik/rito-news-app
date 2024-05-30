@@ -7,5 +7,5 @@ export enum Source {
   TeamfightTactics = 'tft',
   WildRift = 'wr',
   WildRiftEsports = 'wr_esports',
-  RiotGames = 'riotgames'
+  RiotGames = 'riotgames',
 }

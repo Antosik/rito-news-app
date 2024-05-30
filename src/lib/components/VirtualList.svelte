@@ -1,4 +1,4 @@
-<script lang="ts">
+<script lang="ts" generics="T">
   // @sveltejs/svelte-virtual-list
   import { onMount, tick } from 'svelte';
 
@@ -6,7 +6,7 @@
   import PullToRefresh from './PullToRefresh.svelte';
 
   // props
-  export let items: any[];
+  export let items: T[];
   export let height = '100%';
   export let itemHeight: number | undefined = undefined;
 
@@ -20,7 +20,7 @@
   let viewport: HTMLElement;
   let contents: HTMLElement;
   let viewport_height = 0;
-  let visible: { index: number; data: any }[];
+  let visible: { index: number; data: T }[];
   let mounted: boolean;
 
   let top = 0;
@@ -34,7 +34,7 @@
   // whenever `items` changes, invalidate the current heightmap
   $: if (mounted) refresh(items, viewport_height, itemHeight);
 
-  async function refresh(items: any[], viewport_height: number, itemHeight: number | undefined) {
+  async function refresh(items: T[], viewport_height: number, itemHeight: number | undefined) {
     const { scrollTop } = viewport;
 
     await tick(); // wait until the DOM is up to date

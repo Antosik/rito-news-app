@@ -45,14 +45,14 @@
     searchText = '',
     offices: number[] = [],
     crafts: string[] = [],
-    products: string[] = []
+    products: string[] = [],
   ) => {
     return jobs.filter(
       (el) =>
         (!searchText || el.title.toLowerCase().includes(searchText.toLowerCase())) &&
         (!offices.length || offices.includes(Number(el.office.id))) &&
         (!crafts.length || crafts.includes(el.craft.name)) &&
-        (!products.length || products.includes(el.products))
+        (!products.length || products.includes(el.products)),
     );
   };
 

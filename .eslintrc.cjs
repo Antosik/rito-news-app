@@ -80,6 +80,6 @@ module.exports = {
 				],
 			},
 		],
-		'import/no-unresolved': [2, { ignore: ['^\\$[env|app]'] }]
+		'import/no-unresolved': [2, { ignore: ['^\\$[env|app|locales]'] }]
 	},
 };

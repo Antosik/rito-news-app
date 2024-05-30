@@ -14,7 +14,7 @@ export async function load() {
       getLocaleFromQueryString('locale') ??
       getLocaleFromLocalStorage() ??
       Locale.English_UnitedStates,
-    fallbackLocale: Locale.English_UnitedStates
+    fallbackLocale: Locale.English_UnitedStates,
   });
 
   saveLocaleToLocalStorage(locale);

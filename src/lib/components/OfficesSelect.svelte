@@ -1,6 +1,6 @@
 <script lang="ts">
   import { t } from 'svelte-intl-precompile';
-  import MultiSelect, { type ObjectOption } from 'svelte-multiselect';
+  import { MultiSelect, type ObjectOption } from 'svelte-multiselect';
 
   import offices from '$lib/api/offices.json';
 

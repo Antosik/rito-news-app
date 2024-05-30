@@ -31,12 +31,12 @@
         return loadDataBySource<NewsItem>(el, locale)
           .then((res) => res.map((item) => ({ ...item, source: el })))
           .catch(() => []);
-      })
+      }),
     ).then((res) =>
       res
         .flat(1)
         .map((el) => ({ ...el, date: new Date(el.date) }))
-        .sort((a, b) => b.date.getTime() - a.date.getTime())
+        .sort((a, b) => b.date.getTime() - a.date.getTime()),
     );
   $: loadPromise = load(sourcesToLoad, $locale);
 

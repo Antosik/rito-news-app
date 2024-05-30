@@ -13,7 +13,7 @@
     PENDING = 'pending',
     PULLING = 'pulling',
     RELEASING = 'releasing',
-    REFRESHING = 'refreshing'
+    REFRESHING = 'refreshing',
   }
 
   let mainEl: HTMLDivElement;
@@ -121,7 +121,7 @@
 
       timer = setTimeout(
         () => Promise.resolve(dispatch('refresh')).then(() => onReset()),
-        refreshTimeout
+        refreshTimeout,
       );
     } else {
       if (state === State.REFRESHING) {
@@ -206,7 +206,9 @@
     font-weight: bold;
     pointer-events: none;
     text-align: center;
-    transition: height 0.3s, min-height 0.3s;
+    transition:
+      height 0.3s,
+      min-height 0.3s;
   }
 
   .box {

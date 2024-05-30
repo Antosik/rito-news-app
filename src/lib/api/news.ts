@@ -6,13 +6,13 @@ export async function loadData<T>(type: string, locale = 'en-us', mode = 'news')
     locale = localeToRiotGamesLocaleMap[locale as Locale] ?? locale;
   }
   return fetch(`https://rito-news.iamantosik.me/${type}/${locale}/${mode}.json`, {
-    cache: 'no-cache'
+    cache: 'no-cache',
   }).then((res) => res.json());
 }
 
 export async function loadDataBySource<T>(
   source: Source,
-  locale = 'en-us'
+  locale = 'en-us',
 ): Promise<(T & { source: Source })[]> {
   const [type, mode] = source.split('_');
   return loadData(type, locale, mode);

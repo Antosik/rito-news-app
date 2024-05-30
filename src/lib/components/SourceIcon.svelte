@@ -26,7 +26,7 @@
     val: valLogo,
     val_esports: valEsportsLogo,
     wr: wrLogo,
-    wr_esports: wrEsportsLogo
+    wr_esports: wrEsportsLogo,
   };
 </script>
 

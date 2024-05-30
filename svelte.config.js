@@ -7,15 +7,15 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
-	preprocess: preprocess({
-		scss: {
-			prependData: `@import '${join(__dirname, 'src/scss/components.scss').replace(/\\/g, '/')}';`
-		}
-	}),
+  preprocess: preprocess({
+    scss: {
+      prependData: `@import '${join(__dirname, 'src/scss/components.scss').replace(/\\/g, '/')}';`,
+    },
+  }),
 
-	kit: {
-		adapter: adapter()
-	}
+  kit: {
+    adapter: adapter(),
+  },
 };
 
 export default config;

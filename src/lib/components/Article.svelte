@@ -11,7 +11,7 @@
   $: tags = [
     ...(item.categories ?? []),
     ...(item.tags ?? []),
-    ...(item.category ? [item.category] : [])
+    ...(item.category ? [item.category] : []),
   ];
 
   const dateFormat: Intl.DateTimeFormatOptions = {
@@ -19,7 +19,7 @@
     month: 'numeric',
     day: 'numeric',
     hour: '2-digit',
-    minute: '2-digit'
+    minute: '2-digit',
   };
 
   function formatImage(imageUrl: string) {
@@ -116,11 +116,9 @@
       &-blur {
         position: absolute;
         z-index: 1;
-        top: var(--media-blur-margin);
-        right: var(--media-blur-margin);
-        bottom: var(--media-blur-margin);
-        left: var(--media-blur-margin);
         filter: blur(var(--media-blur));
+        inset: var(--media-blur-margin) var(--media-blur-margin) var(--media-blur-margin)
+          var(--media-blur-margin);
         pointer-events: none;
       }
 
@@ -150,16 +148,13 @@
 
       &::before {
         position: absolute;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
         content: '';
+        inset: 0;
       }
     }
 
     p {
-      margin: 0 grid(4) grid(3) grid(4);
+      margin: 0 grid(4) grid(3);
     }
 
     &__footer {

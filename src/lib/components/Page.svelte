@@ -71,6 +71,7 @@
       style:--z-index-overlay={2}
       transition:fade={{ duration: 200 }}
       on:click={toggleMenu}
+      on:keydown={toggleMenu}
     />
     <aside transition:fly={{ x: 1000, opacity: 1 }}>
       <slot name="aside" />
@@ -150,7 +151,9 @@
     justify-content: space-between;
     padding: 0 grid(8);
     background: $color-white;
-    box-shadow: 1px 2px 2px hsl(216deg 15% 87% / 33.3%), 2px 4px 4px hsl(216deg 15% 87% / 33.3%),
+    box-shadow:
+      1px 2px 2px hsl(216deg 15% 87% / 33.3%),
+      2px 4px 4px hsl(216deg 15% 87% / 33.3%),
       3px 6px 6px hsl(216deg 15% 87% / 33.3%);
   }
 
@@ -209,12 +212,9 @@
   .overlay {
     position: absolute;
     z-index: var(--z-index-overlay, 1);
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
     background: color_adjust_alpha($color: $color-black, $amount: 0.7);
     content: '';
+    inset: 0;
   }
 
   .modal {
