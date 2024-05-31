@@ -8,25 +8,18 @@
 
   export let title: string;
 
-  let showLanguageModal = false;
-  const toggleLanguageModal = () => {
-    showLanguageModal = !showLanguageModal;
-    showAboutModal = false;
-    menuOpened = false;
-  };
+  let languageModal: HTMLDialogElement;
+  let aboutModal: HTMLDialogElement;
+  let menuModal: HTMLDialogElement;
 
-  let showAboutModal = false;
-  const toggleAboutModal = () => {
-    showAboutModal = !showAboutModal;
-    showLanguageModal = false;
-    menuOpened = false;
-  };
+  const openLanguageModal = () => languageModal.showModal();
+  const openAboutModal = () => aboutModal.showModal();
+  const openMenuModal = () => menuModal.showModal();
 
-  let menuOpened = false;
-  const toggleMenu = () => {
-    menuOpened = !menuOpened;
-    showLanguageModal = false;
-    showAboutModal = false;
+  const handleDiaglogBackdropClick = (e: MouseEvent & { currentTarget: HTMLDialogElement }) => {
+    if (e.target === e.currentTarget) {
+      e.currentTarget.close();
+    }
   };
 </script>
 
@@ -34,21 +27,17 @@
   <h1>{title}</h1>
 
   <div class="tools">
-    <button
-      aria-label={$t('change-language')}
-      class:active={showLanguageModal}
-      on:click={toggleLanguageModal}
-    >
+    <button aria-label={$t('change-language')} on:click={openLanguageModal}>
       <FeatherIcon name="globe" size="18" />
     </button>
 
-    <button aria-label={$t('about')} class:active={showAboutModal} on:click={toggleAboutModal}>
+    <button aria-label={$t('about')} on:click={openAboutModal}>
       <FeatherIcon name="info" size="18" />
     </button>
 
     <MediaQuery query="(min-width: 992px)" let:matches>
       {#if !matches}
-        <button aria-label={$t('filters')} class:active={menuOpened} on:click={toggleMenu}>
+        <button aria-label={$t('filters')} on:click={openMenuModal}>
           <FeatherIcon name="filter" size="18" />
         </button>
       {/if}
@@ -65,47 +54,40 @@
     <aside>
       <slot name="aside" />
     </aside>
-  {:else if menuOpened}
-    <div
-      class="overlay"
-      style:--z-index-overlay={2}
+  {:else}
+    <dialog
+      class="filter"
+      bind:this={menuModal}
       transition:fade={{ duration: 200 }}
-      on:click={toggleMenu}
-      on:keydown={toggleMenu}
-    />
-    <aside transition:fly={{ x: 1000, opacity: 1 }}>
-      <slot name="aside" />
-    </aside>
+      on:mousedown={handleDiaglogBackdropClick}
+    >
+      <aside transition:fly={{ x: 1000, opacity: 1 }}>
+        <slot name="aside" />
+      </aside>
+    </dialog>
   {/if}
 </MediaQuery>
 
-{#if showLanguageModal}
-  <div
-    class="overlay"
-    style:--z-index-overlay={11}
-    transition:fade={{ duration: 200 }}
-    on:click={toggleLanguageModal}
-  />
-  <div
-    role="alertdialog"
-    aria-modal="true"
-    class="modal language-select"
-    transition:fade={{ duration: 200 }}
-  >
+<dialog
+  class="modal"
+  bind:this={languageModal}
+  transition:fade={{ duration: 200 }}
+  on:mousedown={handleDiaglogBackdropClick}
+>
+  <div class="language-select">
     <h2 class="visually-hidden">{$t('change-language')}</h2>
     <FeatherIcon name="globe" size="18" />
     <LanguageSelect --sms-open-z-index={10000} bind:selected={$locale} />
   </div>
-{/if}
+</dialog>
 
-{#if showAboutModal}
-  <div
-    class="overlay"
-    style:--z-index-overlay={11}
-    transition:fade={{ duration: 200 }}
-    on:click={toggleAboutModal}
-  />
-  <div role="alertdialog" aria-modal="true" class="modal about" transition:fade={{ duration: 200 }}>
+<dialog
+  class="modal"
+  bind:this={aboutModal}
+  transition:fade={{ duration: 200 }}
+  on:mousedown={handleDiaglogBackdropClick}
+>
+  <div class="about">
     <h2 class="center">{$t('about')}</h2>
 
     <p class="center">{$t('about-text')}</p>
@@ -125,9 +107,9 @@
       <a href="https://github.com/Antosik/rito-news" target="_blank">rito-news</a>
     </p>
     <p class="center" />
-    <p class="center"><a href="https://iamantosik.me" target="_blank">Antosik</a>, 2023</p>
+    <p class="center"><a href="https://github.com/Antosik" target="_blank">Antosik</a>, 2024</p>
   </div>
-{/if}
+</dialog>
 
 <style lang="scss">
   :root {
@@ -169,20 +151,16 @@
     padding: grid(1);
     border: 0;
     background: transparent;
-
-    &.active {
-      color: $color-riotgames;
-    }
   }
 
   main,
   aside {
     position: relative;
-    top: var(--header-size, 100px);
-    height: calc(100% - var(--header-size, 100px));
   }
 
   main {
+    top: var(--header-size, 100px);
+    height: calc(100% - var(--header-size, 100px));
     flex: 1 100%;
 
     @include breakpoint(lg) {
@@ -191,30 +169,24 @@
   }
 
   aside {
-    position: absolute;
-    z-index: 10;
-    top: var(--header-size, 100px);
-    right: 0;
     overflow: auto;
-    width: 85%;
-    padding: grid(6) grid(8) grid(8);
     background: $color-white;
 
     @include breakpoint(lg) {
-      position: relative;
       top: var(--header-size, 100px);
-      right: initial;
       width: 35%;
-      padding-left: grid(4);
+      padding: grid(4) grid(8) grid(8);
     }
   }
 
-  .overlay {
-    position: absolute;
-    z-index: var(--z-index-overlay, 1);
-    background: color_adjust_alpha($color: $color-black, $amount: 0.7);
-    content: '';
-    inset: 0;
+  dialog {
+    border: 0;
+    padding: 0;
+    overflow: visible;
+
+    &::backdrop {
+      background: color_adjust_alpha($color: $color-black, $amount: 0.7);
+    }
   }
 
   .modal {
@@ -222,10 +194,26 @@
     z-index: 20;
     top: 50%;
     left: 50%;
+    max-width: 90%;
+    width: max-content;
     padding: grid(4) grid(8);
     border-radius: 6px;
     background: $color-white;
     transform: translate(-50%, -50%);
+  }
+
+  .filter {
+    position: absolute;
+    z-index: 20;
+    top: 0;
+    left: 20vw;
+    width: 80vw;
+    height: 100vh;
+    max-height: 100vh;
+    padding: grid(8) grid(8);
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
+    background: $color-white;
   }
 
   .language-select {
