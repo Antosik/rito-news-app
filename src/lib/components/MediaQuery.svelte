@@ -1,49 +1,19 @@
 <script lang="ts">
-  import { onMount } from 'svelte';
+  import media from '$lib/stores/media';
 
   export let query: string;
+  export let loader = false;
+  export let empty = false;
 
-  let mql: MediaQueryList;
-  let mqlListener: (e: MediaQueryListEvent) => void;
-  let wasMounted = false;
-  let matches = false;
-
-  onMount(() => {
-    wasMounted = true;
-
-    mql = window.matchMedia(query);
-    matches = mql.matches;
-
-    return () => {
-      removeActiveListener();
-    };
-  });
-
-  $: {
-    if (wasMounted) {
-      removeActiveListener();
-      addNewListener(query);
-    }
-  }
-
-  function addNewListener(query: string) {
-    mql = window.matchMedia(query);
-    mqlListener = (v) => (matches = v.matches);
-
-    mql.addEventListener
-      ? mql.addEventListener('change', mqlListener)
-      : mql.addListener(mqlListener);
-
-    matches = mql.matches;
-  }
-
-  function removeActiveListener() {
-    if (mql && mqlListener) {
-      mql.removeEventListener
-        ? mql.removeEventListener('change', mqlListener)
-        : mql.removeListener(mqlListener);
-    }
-  }
+  $: mq = media(query);
 </script>
 
-<slot {matches} />
+{#if $mq === null}
+  {#if loader}
+    <slot name="loading" />
+  {:else}
+    <div class="visually-hidden"><slot /></div>
+  {/if}
+{:else if $mq !== null || !empty}
+  <slot matches={$mq} />
+{/if}
