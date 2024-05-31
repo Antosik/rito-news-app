@@ -27,6 +27,6 @@
 
 <style lang="scss">
   :root {
-    --sms-focus-border: 1px solid #{$color-riotgames};
+    --sms-focus-border: 1px solid #{$color-secondary};
   }
 </style>
