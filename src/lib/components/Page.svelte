@@ -64,6 +64,7 @@
       <slot name="aside" />
     </aside>
   {:else}
+    <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
     <dialog
       class="filter"
       bind:this={filterModal}
@@ -71,6 +72,9 @@
       on:mousedown={handleDiaglogBackdropClick}
       on:close={handleFilterClose}
     >
+      <button type="button" on:click={() => filterModal.close()}>
+        <FeatherIcon name="x" size="14" />
+      </button>
       <aside transition:fly={{ x: 1000, opacity: 1 }}>
         <slot name="aside" isOpened={isFilterOpened} />
       </aside>
@@ -78,12 +82,16 @@
   {/if}
 </MediaQuery>
 
+<!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
 <dialog
   class="modal"
   bind:this={languageModal}
   transition:fade={{ duration: 200 }}
   on:mousedown={handleDiaglogBackdropClick}
 >
+  <button type="button" on:click={() => languageModal.close()}>
+    <FeatherIcon name="x" size="14" />
+  </button>
   <div class="language-select">
     <h2 class="visually-hidden">{$t('change-language')}</h2>
     <FeatherIcon name="globe" size="18" />
@@ -91,12 +99,16 @@
   </div>
 </dialog>
 
+<!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
 <dialog
   class="modal"
   bind:this={aboutModal}
   transition:fade={{ duration: 200 }}
   on:mousedown={handleDiaglogBackdropClick}
 >
+  <button type="button" on:click={() => aboutModal.close()}>
+    <FeatherIcon name="x" size="14" />
+  </button>
   <div class="about">
     <h2 class="center">{$t('about')}</h2>
 
@@ -196,6 +208,12 @@
 
     &::backdrop {
       background: color_adjust_alpha($color: $color-black, $amount: 0.7);
+    }
+
+    & > button {
+      position: absolute;
+      top: grid(1);
+      right: grid(1);
     }
   }
 
