@@ -180,9 +180,9 @@
   }
 
   dialog {
-    border: 0;
-    padding: 0;
     overflow: visible;
+    padding: 0;
+    border: 0;
 
     &::backdrop {
       background: color_adjust_alpha($color: $color-black, $amount: 0.7);
@@ -194,8 +194,8 @@
     z-index: 20;
     top: 50%;
     left: 50%;
-    max-width: 90%;
     width: max-content;
+    max-width: 90%;
     padding: grid(4) grid(8);
     border-radius: 6px;
     background: $color-white;
@@ -210,10 +210,10 @@
     width: 80vw;
     height: 100vh;
     max-height: 100vh;
-    padding: grid(8) grid(8);
-    border-top-left-radius: 6px;
-    border-bottom-left-radius: 6px;
+    padding: grid(8);
     background: $color-white;
+    border-bottom-left-radius: 6px;
+    border-top-left-radius: 6px;
   }
 
   .language-select {

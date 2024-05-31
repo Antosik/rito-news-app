@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Locale, localeToRiotGamesLocaleMap } from '$lib/types/locale';
+  import { Locale, LOCALE_TO_RIOTGAMES_LOCALE_MAP } from '$lib/types/locale';
   import type { DivIconOptions, MapOptions, TileLayerOptions } from 'leaflet';
 
   import 'leaflet/dist/leaflet.css';
@@ -13,7 +13,7 @@
 
   export let selected: number[] = [];
 
-  $: riotLocale = localeToRiotGamesLocaleMap[$locale as Locale];
+  $: riotLocale = LOCALE_TO_RIOTGAMES_LOCALE_MAP[$locale as Locale];
 
   const mapOptions: MapOptions = {
     center: [0, 0],
