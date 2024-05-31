@@ -10,16 +10,25 @@
 
   let languageModal: HTMLDialogElement;
   let aboutModal: HTMLDialogElement;
-  let menuModal: HTMLDialogElement;
+
+  let filterModal: HTMLDialogElement;
+  let isFilterOpened = false;
 
   const openLanguageModal = () => languageModal.showModal();
   const openAboutModal = () => aboutModal.showModal();
-  const openMenuModal = () => menuModal.showModal();
+  const openFilterModal = () => {
+    isFilterOpened = true;
+    filterModal.showModal();
+  };
 
   const handleDiaglogBackdropClick = (e: MouseEvent & { currentTarget: HTMLDialogElement }) => {
     if (e.target === e.currentTarget) {
       e.currentTarget.close();
     }
+  };
+
+  const handleFilterClose = () => {
+    isFilterOpened = false;
   };
 </script>
 
@@ -37,7 +46,7 @@
 
     <MediaQuery query="(min-width: 992px)" let:matches>
       {#if !matches}
-        <button aria-label={$t('filters')} on:click={openMenuModal}>
+        <button aria-label={$t('filters')} on:click={openFilterModal}>
           <FeatherIcon name="filter" size="18" />
         </button>
       {/if}
@@ -57,12 +66,13 @@
   {:else}
     <dialog
       class="filter"
-      bind:this={menuModal}
+      bind:this={filterModal}
       transition:fade={{ duration: 200 }}
       on:mousedown={handleDiaglogBackdropClick}
+      on:close={handleFilterClose}
     >
       <aside transition:fly={{ x: 1000, opacity: 1 }}>
-        <slot name="aside" />
+        <slot name="aside" isOpened={isFilterOpened} />
       </aside>
     </dialog>
   {/if}

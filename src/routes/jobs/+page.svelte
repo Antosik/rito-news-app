@@ -80,7 +80,7 @@
     <p>{$t('failed')}</p>
   {/await}
 
-  <svelte:fragment slot="aside">
+  <svelte:fragment slot="aside" let:isOpened>
     <ul class="tools">
       <li class="tool">
         <label for="search">{$t('search')}</label>
@@ -109,7 +109,9 @@
       <li class="tool">
         <label for="office">{$t('office')}</label>
         <div class="map">
-          <OfficesMap bind:selected={selectedOffices} />
+          {#key isOpened}
+            <OfficesMap bind:selected={selectedOffices} />
+          {/key}
         </div>
         <OfficesSelect id="office" name="office" bind:selected={selectedOffices} />
       </li>
