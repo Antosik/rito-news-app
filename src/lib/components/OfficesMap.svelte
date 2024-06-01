@@ -63,7 +63,7 @@
           />
           <Popup>
             <div class="popup">
-              Office in {marker.name}
+              {marker.name}
               <div class="controls">
                 <a
                   href="https://www.riotgames.com/{riotLocale}/o/{marker.id}"
@@ -71,7 +71,7 @@
                   class="control"
                   rel="noopener noreferrer"
                 >
-                  Show info
+                  Info
                 </a>
                 <button
                   aria-label={$t('select')}
@@ -105,6 +105,7 @@
     display: flex;
     flex-direction: column;
     gap: grid(2);
+    text-align: center;
 
     .controls {
       display: flex;
