@@ -96,6 +96,7 @@
     flex-direction: column;
     border: 2px solid $color-border;
     border-radius: 12px;
+    transition: border 200ms ease-in-out;
 
     @include breakpoint(md) {
       flex-direction: row;
@@ -180,6 +181,10 @@
       @include breakpoint(md) {
         justify-content: flex-end;
       }
+    }
+
+    &:hover {
+      border: 2px solid $color-riotgames;
     }
   }
 
