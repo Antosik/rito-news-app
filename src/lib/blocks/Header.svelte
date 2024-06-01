@@ -14,9 +14,26 @@
 </script>
 
 <header>
-  <h1>{$t(key)}</h1>
+  <h1>
+    {#if key === 'news'}
+      <FeatherIcon name="book-open" size="20" />
+    {:else if key === 'jobs'}
+      <FeatherIcon name="briefcase" size="20" />
+    {/if}
+    {$t(key)}
+  </h1>
 
   <div class="tools">
+    {#if key === 'news'}
+      <a data-sveltekit-preload-data href="/jobs" title={$t('jobs')}>
+        <FeatherIcon name="briefcase" size="18" />
+      </a>
+    {:else if key === 'jobs'}
+      <a data-sveltekit-preload-data href="/" title={$t('news')}>
+        <FeatherIcon name="book-open" size="18" />
+      </a>
+    {/if}
+
     <button
       aria-label={$t('change-language')}
       title={$t('change-language')}
@@ -28,11 +45,6 @@
     <button aria-label={$t('about')} title={$t('about')} on:click={() => dispatch('open-about')}>
       <FeatherIcon name="info" size="18" />
     </button>
-
-    <p class="center">
-      <a data-sveltekit-preload-data href="/">{$t('news')}</a> |
-      <a data-sveltekit-preload-data href="/jobs">{$t('jobs')}</a>
-    </p>
 
     <button
       class="filter-button"
@@ -47,15 +59,15 @@
 
 <style lang="scss">
   header {
+    @include flex_vcenter;
+
     position: fixed;
     z-index: 100000;
     top: 0;
     left: 0;
-    display: flex;
     width: 100%;
     height: var(--header-size, 100px);
     flex-wrap: wrap;
-    align-items: center;
     justify-content: space-between;
     padding: 0 grid(8);
     background: $color-white;
@@ -65,13 +77,20 @@
       3px 6px 6px hsl(216deg 15% 87% / 33.3%);
   }
 
+  h1 {
+    @include flex_vcenter;
+
+    gap: grid(2);
+  }
+
   div {
     @include flex_center;
 
     gap: grid(2);
   }
 
-  button {
+  button,
+  a {
     @include flex_center;
 
     padding: grid(1);
