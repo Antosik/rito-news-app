@@ -10,12 +10,12 @@
   import { page } from '$app/stores';
 
   import { loadDataBySource } from '$lib/api/news';
+  import Loading from '$lib/atoms/Loading.svelte';
   import Article from '$lib/components/Article.svelte';
-  import Loading from '$lib/components/Loading.svelte';
-  import Page from '$lib/components/Page.svelte';
   import SourceSelect from '$lib/components/SourceSelect.svelte';
   import VirtualList from '$lib/components/VirtualList.svelte';
   import { selectedSources } from '$lib/stores/sources';
+  import Page from '$lib/widgets/Page.svelte';
 
   $: if (browser) {
     const url = new URL($page.url);
@@ -43,7 +43,7 @@
   const onRefresh = () => (loadPromise = load(sourcesToLoad, $locale));
 </script>
 
-<Page title={$t('news')}>
+<Page key="news">
   {#await loadPromise}
     <div class="loading">
       <Loading --color="#000" --size="40px" --border="4px" --speed="1s" />

@@ -3,7 +3,7 @@
 
   import { locale } from 'svelte-intl-precompile';
 
-  import SourceIcon from '$lib/components/SourceIcon.svelte';
+  import SourceIcon from '$lib/atoms/SourceIcon.svelte';
 
   export let item: NewsItem;
 
@@ -47,7 +47,7 @@
     <header>
       <h2>
         {#if item.source}
-          <SourceIcon size={24} source={item.source} className="article__source" />
+          <SourceIcon source={item.source} className="article__source" />
         {/if}
         <a href={item.url} target="_blank">{item.title}</a>
       </h2>
@@ -140,6 +140,8 @@
     }
 
     h2 {
+      --source-icon-size: 24px;
+
       margin: grid(3) grid(4);
     }
 

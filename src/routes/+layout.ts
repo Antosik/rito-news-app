@@ -6,6 +6,9 @@ import { getLocaleFromLocalStorage, saveLocaleToLocalStorage } from '$lib/stores
 
 import { registerAll } from '$locales';
 
+export const ssr = false;
+export const prerender = false;
+
 registerAll();
 
 export async function load() {

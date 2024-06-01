@@ -2,7 +2,8 @@
   // @sveltejs/svelte-virtual-list
   import { onMount, tick } from 'svelte';
 
-  import FeatherIcon from './FeatherIcon.svelte';
+  import FeatherIcon from '../atoms/FeatherIcon.svelte';
+
   import PullToRefresh from './PullToRefresh.svelte';
 
   // props
@@ -166,6 +167,7 @@
     display: block;
     -webkit-overflow-scrolling: touch;
     overflow-y: auto;
+    scrollbar-gutter: stable;
   }
 
   ul,

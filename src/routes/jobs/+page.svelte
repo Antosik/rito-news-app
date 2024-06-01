@@ -9,14 +9,14 @@
   import { page } from '$app/stores';
 
   import { loadData } from '$lib/api/news';
+  import Loading from '$lib/atoms/Loading.svelte';
+  import Search from '$lib/atoms/Search.svelte';
   import Job from '$lib/components/Job.svelte';
-  import Loading from '$lib/components/Loading.svelte';
   import MultiSelectString from '$lib/components/MultiSelectString.svelte';
   import OfficesMap from '$lib/components/OfficesMap.svelte';
   import OfficesSelect from '$lib/components/OfficesSelect.svelte';
-  import Page from '$lib/components/Page.svelte';
-  import Search from '$lib/components/Search.svelte';
   import VirtualList from '$lib/components/VirtualList.svelte';
+  import Page from '$lib/widgets/Page.svelte';
 
   const load = (locale: string) =>
     loadData<JobsItem>('riotgames', locale, 'jobs').then((res) => {
@@ -59,7 +59,7 @@
   const onRefresh = () => (loadPromise = load($locale));
 </script>
 
-<Page title={$t('jobs')}>
+<Page key="jobs">
   {#await loadPromise}
     <div class="loading">
       <Loading --color="#000" --size="40px" --border="4px" --speed="1s" />

@@ -9,7 +9,7 @@
   import { browser } from '$app/environment';
 
   import markers from '$lib/api/offices.json';
-  import FeatherIcon from '$lib/components/FeatherIcon.svelte';
+  import FeatherIcon from '$lib/atoms/FeatherIcon.svelte';
 
   export let selected: number[] = [];
 

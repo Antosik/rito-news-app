@@ -3,8 +3,7 @@
 
   import { t } from 'svelte-intl-precompile';
 
-  import MediaQuery from '$lib/components/MediaQuery.svelte';
-  import SourceIcon from '$lib/components/SourceIcon.svelte';
+  import SourceIcon from '$lib/atoms/SourceIcon.svelte';
 
   export let selected: Source[] = [];
 
@@ -29,9 +28,7 @@
         on:click={() => toggleSelect(option)}
       >
         <figure>
-          <MediaQuery query="(min-width: 992px)" let:matches>
-            <SourceIcon source={option} size={matches ? 32 : 24} />
-          </MediaQuery>
+          <SourceIcon source={option} />
         </figure>
         <span>
           {$t(`sources.${option}`)}
@@ -70,5 +67,13 @@
 
   span {
     margin-bottom: grid(1);
+  }
+
+  figure {
+    --source-icon-size: 24px;
+
+    @include breakpoint(lg) {
+      --source-icon-size: 32px;
+    }
   }
 </style>
