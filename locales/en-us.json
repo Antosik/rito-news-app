@@ -16,6 +16,7 @@
     "attribution-text": "This service isn't developed by Riot Games and doesn't reflect the views or opinions of Riot Games or anyone officially involved in producing or managing League of Legends, Legends of Runeterra, Teamfight Tactics, VALORANT, or Wild Rift. League of Legends, Legends of Runeterra, Teamfight Tactics, VALORANT, Wild Rift and Riot Games are trademarks or registered trademarks of Riot Games, Inc.",
     "source-code": "Source code",
     "sources": {
+        "all": "All",
         "lol": "League of Legends",
         "lol_esports": "LoL Esports",
         "lor": "Legends of Runeterra",

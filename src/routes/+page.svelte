@@ -16,6 +16,9 @@
   import VirtualList from '$lib/components/VirtualList.svelte';
   import { selectedSources } from '$lib/stores/sources';
   import Page from '$lib/widgets/Page.svelte';
+  import Search from '$lib/atoms/Search.svelte';
+
+  let searchText = '';
 
   $: if (browser) {
     const url = new URL($page.url);
@@ -41,6 +44,18 @@
   $: loadPromise = load(sourcesToLoad, $locale);
 
   const onRefresh = () => (loadPromise = load(sourcesToLoad, $locale));
+  
+  function filterDataBySearch(data: NewsItem[], searchText: string): NewsItem[] {
+    const search = searchText.toLowerCase();
+    return data.filter(
+      (el) =>
+        el.title?.toLowerCase().includes(search) ||
+        el.description?.toLowerCase().includes(search) ||
+        el.categories?.join(',').toLowerCase().includes(search) ||
+        el.category?.toLowerCase().includes(search) ||
+        el.tags?.join(',').toLowerCase().includes(search),
+    );
+  }
 </script>
 
 <Page key="news">
@@ -50,7 +65,7 @@
     </div>
   {:then data}
     <div class="list-wrapper">
-      <VirtualList items={data} let:item on:refresh={onRefresh}>
+      <VirtualList items={filterDataBySearch(data, searchText)} let:item on:refresh={onRefresh}>
         <div class="item-wrapper" in:fade={{ duration: 200 }}>
           <Article {item} />
         </div>
@@ -63,7 +78,12 @@
   <svelte:fragment slot="aside">
     <ul class="tools">
       <li class="tool">
-        <SourceSelect bind:selected={$selectedSources} />
+        <label for="search">{$t('search')}</label>
+        <Search id="search" name="search" bind:value={searchText} />
+      </li>
+      <li class="tool">
+        <label for="sources">{$t('select')}</label>
+        <SourceSelect id="sources" name="sources" bind:selected={$selectedSources} />
       </li>
     </ul>
   </svelte:fragment>
