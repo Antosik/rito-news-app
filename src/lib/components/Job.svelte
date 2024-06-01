@@ -40,6 +40,7 @@
     flex-direction: column;
     border: 2px solid $color-border;
     border-radius: 12px;
+    transition: border 200ms ease-in-out;
 
     &__content {
       display: flex;
@@ -56,11 +57,8 @@
 
       &::before {
         position: absolute;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
         content: '';
+        inset: 0;
       }
     }
 
@@ -86,6 +84,10 @@
         margin-right: grid(1);
         content: ';';
       }
+    }
+
+    &:hover {
+      border: 2px solid $color-riotgames;
     }
   }
 </style>

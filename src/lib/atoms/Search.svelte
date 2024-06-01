@@ -22,7 +22,7 @@
     font-size: inherit;
 
     &:focus {
-      border: 1pt solid #{$color-riotgames};
+      border: 1pt solid #{$color-secondary};
       outline: none;
     }
   }

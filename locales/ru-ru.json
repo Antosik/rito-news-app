@@ -16,5 +16,8 @@
     "multiselect": {
         "noMatchingOptionsMsg": "Нет подходящих параметров",
         "defaultDisabledTitle": "Эта опция недоступна"
+    },
+    "sources": {
+        "all": "Выбрать все"
     }
 }

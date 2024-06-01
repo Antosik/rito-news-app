@@ -1,22 +1,26 @@
-import adapter from '@sveltejs/adapter-cloudflare';
+import { dirname, join } from 'node:path';
+import { fileURLToPath } from 'node:url';
+import adapter from '@sveltejs/adapter-static';
 import preprocess from 'svelte-preprocess';
-import autoprefixer from 'autoprefixer';
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
-	// Consult https://github.com/sveltejs/svelte-preprocess
-	// for more information about preprocessors
-	preprocess: preprocess({
-		postcss: {
-			plugins: [autoprefixer()]
-		},
-		scss: {
-			prependData: `@import 'src/scss/components.scss';`
-		}
-	}),
+  preprocess: preprocess({
+    scss: {
+      prependData: `@import '${join(__dirname, 'src/scss/components.scss').replace(/\\/g, '/')}';`,
+    },
+  }),
 
 	kit: {
-		adapter: adapter()
+		adapter: adapter({
+			fallback: 'index.html',
+		}),
+		env: {
+			publicPrefix: '',
+		},
+		prerender: { entries: [] }
 	}
 };
 

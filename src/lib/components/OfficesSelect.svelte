@@ -1,6 +1,6 @@
 <script lang="ts">
   import { t } from 'svelte-intl-precompile';
-  import MultiSelect, { type ObjectOption } from 'svelte-multiselect';
+  import { MultiSelect, type ObjectOption } from 'svelte-multiselect';
 
   import offices from '$lib/api/offices.json';
 
@@ -40,6 +40,6 @@
 
 <style lang="scss">
   :root {
-    --sms-focus-border: 1px solid #{$color-riotgames};
+    --sms-focus-border: 1px solid #{$color-secondary};
   }
 </style>

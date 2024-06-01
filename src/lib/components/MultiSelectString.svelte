@@ -1,6 +1,6 @@
 <script lang="ts">
   import { locale, t } from 'svelte-intl-precompile';
-  import MultiSelect, { type Option } from 'svelte-multiselect';
+  import { MultiSelect, type Option } from 'svelte-multiselect';
 
   export let id: string;
   export let name: string;
@@ -27,6 +27,6 @@
 
 <style lang="scss">
   :root {
-    --sms-focus-border: 1px solid #{$color-riotgames};
+    --sms-focus-border: 1px solid #{$color-secondary};
   }
 </style>

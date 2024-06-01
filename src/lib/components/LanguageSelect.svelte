@@ -2,8 +2,10 @@
   import { Locale } from '$lib/types/locale';
 
   import { t } from 'svelte-intl-precompile';
-  import MultiSelect, { type Option } from 'svelte-multiselect';
+  import { MultiSelect, type Option } from 'svelte-multiselect';
 
+  export let id: string;
+  export let name: string;
   export let selected: string;
 
   const onChange = (e: CustomEvent) => {
@@ -25,6 +27,8 @@
 </script>
 
 <MultiSelect
+  {id}
+  {name}
   minSelect={1}
   maxSelect={1}
   selected={selected ? [selected] : [Locale.English_UnitedStates]}
@@ -46,7 +50,7 @@
 
 <style lang="scss">
   :root {
-    --sms-focus-border: 1px solid #{$color-riotgames};
+    --sms-focus-border: 1px solid #{$color-secondary};
   }
 
   span {

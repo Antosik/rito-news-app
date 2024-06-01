@@ -2,73 +2,67 @@
   import { Source } from '$lib/types/sources';
 
   import { t } from 'svelte-intl-precompile';
+  import { MultiSelect, type ObjectOption } from 'svelte-multiselect';
 
-  import MediaQuery from '$lib/components/MediaQuery.svelte';
-  import SourceIcon from '$lib/components/SourceIcon.svelte';
+  import SourceIcon from '$lib/atoms/SourceIcon.svelte';
 
+  export let id: string;
+  export let name: string;
   export let selected: Source[] = [];
 
-  const options = Object.values(Source);
-  const toggleSelect = (option: Source) => {
-    if (selected.includes(option)) {
-      selected = selected.filter((el) => el != option);
-    } else {
-      selected = [...selected, option];
+  let options: ObjectOption[] = [];
+  $: options = Object.values(Source).map((option) => ({
+    value: option,
+    label: $t(`sources.${option}`),
+  }));
+  $: selectedItems = options.filter((el) => selected.includes(getSourceFromOption(el)));
+
+  function onChange(e: CustomEvent) {
+    switch (e.detail.type) {
+      case 'add':
+        selected = [...selected, e.detail.option.value];
+        return;
+      case 'remove':
+        selected = selected.filter((el) => el !== e.detail.option.value);
+        return;
+      case 'removeAll':
+        selected = [];
+        return;
     }
-  };
+  }
+
+  function getSourceFromOption(option: ObjectOption) {
+    return option.value as Source;
+  }
 </script>
 
-<ul>
-  {#each options as option}
-    {@const toggled = selected.length === 0 || selected.includes(option)}
-    <li>
-      <button
-        aria-label={`${$t('select')} ${$t(`sources.${option}`)}`}
-        type="button"
-        aria-pressed={toggled}
-        on:click={() => toggleSelect(option)}
-      >
-        <figure>
-          <MediaQuery query="(min-width: 992px)" let:matches>
-            <SourceIcon source={option} size={matches ? 32 : 24} />
-          </MediaQuery>
-        </figure>
-        <span>
-          {$t(`sources.${option}`)}
-        </span>
-      </button>
-    </li>
-  {/each}
-</ul>
+<MultiSelect
+  {id}
+  {name}
+  selected={selectedItems}
+  {options}
+  noMatchingOptionsMsg={$t('multiselect.noMatchingOptionsMsg')}
+  defaultDisabledTitle={$t('multiselect.defaultDisabledTitle')}
+  on:change={onChange}
+  --sms-options-max-height="20vh"
+  let:option
+>
+  <div>
+    <figure>
+      <SourceIcon source={getSourceFromOption(option)} />
+    </figure>
+    <span>{option.label}</span>
+  </div>
+</MultiSelect>
 
 <style lang="scss">
-  ul {
-    display: flex;
-    flex-direction: column;
+  :root {
+    --sms-focus-border: 1px solid #{$color-secondary};
+  }
+
+  div {
+    @include flex_vcenter;
+
     gap: grid(2);
-  }
-
-  button {
-    display: flex;
-    width: 100%;
-    align-items: center;
-    padding: grid(2) grid(4);
-    border: 2px solid $color-border;
-    border-radius: 6px;
-    background: transparent;
-    font-size: 14px;
-    gap: grid(4);
-    transition: border 200ms ease-in-out;
-    @include breakpoint(md) {
-      font-size: 16px;
-    }
-
-    &[aria-pressed='true'] {
-      border: 2px solid $color-riotgames;
-    }
-  }
-
-  span {
-    margin-bottom: grid(1);
   }
 </style>

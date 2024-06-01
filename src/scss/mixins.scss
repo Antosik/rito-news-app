@@ -27,6 +27,11 @@ $breakpoints: (
   justify-content: center;
 }
 
+@mixin flex_vcenter {
+  display: flex;
+  align-items: center;
+}
+
 @function color_adjust_alpha($color, $amount) {
   @return color.adjust($color, $alpha: -$amount);
 }

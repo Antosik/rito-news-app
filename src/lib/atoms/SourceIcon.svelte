@@ -15,7 +15,6 @@
 
   export let className: string | undefined = undefined;
   export let source: Source;
-  export let size = 24;
 
   const sourcesIcons: Record<Source, string> = {
     lol: lolLogo,
@@ -26,7 +25,7 @@
     val: valLogo,
     val_esports: valEsportsLogo,
     wr: wrLogo,
-    wr_esports: wrEsportsLogo
+    wr_esports: wrEsportsLogo,
   };
 </script>
 
@@ -34,6 +33,13 @@
   src={sourcesIcons[source]}
   class={className}
   alt={$t(`sources.${source}`)}
-  width={size}
-  height={size}
+  width={32}
+  height={32}
 />
+
+<style lang="scss">
+  img {
+    width: var(--source-icon-size, 24px);
+    height: var(--source-icon-size, 24px);
+  }
+</style>

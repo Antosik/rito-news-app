@@ -3,7 +3,7 @@
 
   import { locale } from 'svelte-intl-precompile';
 
-  import SourceIcon from '$lib/components/SourceIcon.svelte';
+  import SourceIcon from '$lib/atoms/SourceIcon.svelte';
 
   export let item: NewsItem;
 
@@ -11,7 +11,7 @@
   $: tags = [
     ...(item.categories ?? []),
     ...(item.tags ?? []),
-    ...(item.category ? [item.category] : [])
+    ...(item.category ? [item.category] : []),
   ];
 
   const dateFormat: Intl.DateTimeFormatOptions = {
@@ -19,7 +19,7 @@
     month: 'numeric',
     day: 'numeric',
     hour: '2-digit',
-    minute: '2-digit'
+    minute: '2-digit',
   };
 
   function formatImage(imageUrl: string) {
@@ -47,7 +47,7 @@
     <header>
       <h2>
         {#if item.source}
-          <SourceIcon size={24} source={item.source} className="article__source" />
+          <SourceIcon source={item.source} className="article__source" />
         {/if}
         <a href={item.url} target="_blank">{item.title}</a>
       </h2>
@@ -96,6 +96,7 @@
     flex-direction: column;
     border: 2px solid $color-border;
     border-radius: 12px;
+    transition: border 200ms ease-in-out;
 
     @include breakpoint(md) {
       flex-direction: row;
@@ -116,11 +117,9 @@
       &-blur {
         position: absolute;
         z-index: 1;
-        top: var(--media-blur-margin);
-        right: var(--media-blur-margin);
-        bottom: var(--media-blur-margin);
-        left: var(--media-blur-margin);
         filter: blur(var(--media-blur));
+        inset: var(--media-blur-margin) var(--media-blur-margin) var(--media-blur-margin)
+          var(--media-blur-margin);
         pointer-events: none;
       }
 
@@ -142,6 +141,8 @@
     }
 
     h2 {
+      --source-icon-size: 24px;
+
       margin: grid(3) grid(4);
     }
 
@@ -150,16 +151,13 @@
 
       &::before {
         position: absolute;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
         content: '';
+        inset: 0;
       }
     }
 
     p {
-      margin: 0 grid(4) grid(3) grid(4);
+      margin: 0 grid(4) grid(3);
     }
 
     &__footer {
@@ -183,6 +181,10 @@
       @include breakpoint(md) {
         justify-content: flex-end;
       }
+    }
+
+    &:hover {
+      border: 2px solid $color-riotgames;
     }
   }
 

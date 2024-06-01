@@ -23,11 +23,6 @@ declare module '$locales' {
 // default export
 declare module 'svelte-leafletjs?client' {
   export * from 'svelte-leafletjs';
-  export class DivIcon extends (await import('svelte')).SvelteComponentTyped<{
-    options: L.DivIconOptions;
-  }> {
-    getIcon(): L.Icon;
-  }
 }
 
 // fallback
