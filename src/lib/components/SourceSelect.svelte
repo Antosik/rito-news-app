@@ -2,9 +2,9 @@
   import { Source } from '$lib/types/sources';
 
   import { t } from 'svelte-intl-precompile';
+  import { MultiSelect, type ObjectOption } from 'svelte-multiselect';
 
   import SourceIcon from '$lib/atoms/SourceIcon.svelte';
-  import { MultiSelect, type ObjectOption } from 'svelte-multiselect';
 
   export let id: string;
   export let name: string;

@@ -10,7 +10,7 @@ const getInitialValue = () => {
     ?.split(',')
     ?.filter(Boolean) as Source[];
 
-  return localStorageItems.length ? localStorageItems : Object.values(Source);
+  return localStorageItems?.length ? localStorageItems : Object.values(Source);
 };
 
 export const selectedSources = writable<Source[]>(getInitialValue());

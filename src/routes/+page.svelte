@@ -11,12 +11,12 @@
 
   import { loadDataBySource } from '$lib/api/news';
   import Loading from '$lib/atoms/Loading.svelte';
+  import Search from '$lib/atoms/Search.svelte';
   import Article from '$lib/components/Article.svelte';
   import SourceSelect from '$lib/components/SourceSelect.svelte';
   import VirtualList from '$lib/components/VirtualList.svelte';
   import { selectedSources } from '$lib/stores/sources';
   import Page from '$lib/widgets/Page.svelte';
-  import Search from '$lib/atoms/Search.svelte';
 
   let searchText = '';
 
@@ -44,7 +44,7 @@
   $: loadPromise = load(sourcesToLoad, $locale);
 
   const onRefresh = () => (loadPromise = load(sourcesToLoad, $locale));
-  
+
   function filterDataBySearch(data: NewsItem[], searchText: string): NewsItem[] {
     const search = searchText.toLowerCase();
     return data.filter(
