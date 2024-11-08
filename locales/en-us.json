@@ -24,8 +24,7 @@
         "riotgames": "Riot Games",
         "val": "VALORANT",
         "val_esports": "VAL Esports",
-        "wr": "Wild Rift",
-        "wr_esports": "WR Esports"
+        "wr": "Wild Rift"
     },
     "locales": {
         "en-us": "English (NA)",

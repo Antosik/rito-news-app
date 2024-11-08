@@ -6,12 +6,6 @@
     "lan": 2.144449
   },
   {
-    "id": 73570,
-    "name": "Bellevue, USA",
-    "lat": 47.6077046,
-    "lan": -122.1640219
-  },
-  {
     "id": 1967,
     "name": "Berlin, Germany",
     "lat": 52.518621,
@@ -36,10 +30,28 @@
     "lan": 28.978178
   },
   {
+    "id": 22887,
+    "name": "Jakarta, Indonesia",
+    "lat": -6.175985,
+    "lan": 106.828233
+  },
+  {
     "id": 884,
     "name": "Los Angeles, USA",
     "lat": 34.055863,
     "lan": -118.246139
+  },
+  {
+    "id": 17614,
+    "name": "Manila, Philippines",
+    "lat": 14.58920,
+    "lan": 120.98278
+  },
+  {
+    "id": 205032,
+    "name": "Mercer Island, USA",
+    "lat": 47.551162,
+    "lan": -122.222739
   },
   {
     "id": 2255,
