@@ -11,7 +11,6 @@
   import valLogo from '$lib/icons/val.svg';
   import valEsportsLogo from '$lib/icons/val_esports.svg';
   import wrLogo from '$lib/icons/wr.svg';
-  import wrEsportsLogo from '$lib/icons/wr_esports.svg';
 
   export let className: string | undefined = undefined;
   export let source: Source;
@@ -25,7 +24,6 @@
     val: valLogo,
     val_esports: valEsportsLogo,
     wr: wrLogo,
-    wr_esports: wrEsportsLogo,
   };
 </script>
 

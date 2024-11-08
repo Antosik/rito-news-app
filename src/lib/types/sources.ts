@@ -18,7 +18,6 @@ export const Source = {
   VAL_ESPORTS: 'val_esports',
   TFT: 'tft',
   WR: 'wr',
-  WR_ESPORTS: 'wr_esports',
   RIOTGAMES: 'riotgames',
 } as const;
 export type Source = ValueOf<typeof Source>;
